@@ -13,12 +13,11 @@
 		8724216B27587CFF00645330 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8724216927587CFF00645330 /* Main.storyboard */; };
 		8724216D27587D0100645330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8724216C27587D0100645330 /* Assets.xcassets */; };
 		8724217027587D0100645330 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8724216E27587D0100645330 /* LaunchScreen.storyboard */; };
-		8724217B27587D0100645330 /* InvestmentReturnCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724217A27587D0100645330 /* InvestmentReturnCalculatorTests.swift */; };
+		8724217B27587D0100645330 /* InvestmentReturnsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724217A27587D0100645330 /* InvestmentReturnsModelTests.swift */; };
 		8724218527587D0100645330 /* FLITChartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724218427587D0100645330 /* FLITChartUITests.swift */; };
 		8724218727587D0100645330 /* FLITChartUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724218627587D0100645330 /* FLITChartUITestsLaunchTests.swift */; };
-		8724219527588B9D00645330 /* InvestmentAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724219427588B9D00645330 /* InvestmentAttributes.swift */; };
+		8724219527588B9D00645330 /* InvestmentReturnsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724219427588B9D00645330 /* InvestmentReturnsModel.swift */; };
 		87242198275892B000645330 /* InvestmentReturnCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87242197275892AF00645330 /* InvestmentReturnCalculator.swift */; };
-		8724219A2758939900645330 /* InvestmentReturnModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872421992758939900645330 /* InvestmentReturnModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,13 +47,12 @@
 		8724216F27587D0100645330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8724217127587D0100645330 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8724217627587D0100645330 /* FLITChartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FLITChartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8724217A27587D0100645330 /* InvestmentReturnCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnCalculatorTests.swift; sourceTree = "<group>"; };
+		8724217A27587D0100645330 /* InvestmentReturnsModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnsModelTests.swift; sourceTree = "<group>"; };
 		8724218027587D0100645330 /* FLITChartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FLITChartUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8724218427587D0100645330 /* FLITChartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLITChartUITests.swift; sourceTree = "<group>"; };
 		8724218627587D0100645330 /* FLITChartUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLITChartUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		8724219427588B9D00645330 /* InvestmentAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentAttributes.swift; sourceTree = "<group>"; };
+		8724219427588B9D00645330 /* InvestmentReturnsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnsModel.swift; sourceTree = "<group>"; };
 		87242197275892AF00645330 /* InvestmentReturnCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnCalculator.swift; sourceTree = "<group>"; };
-		872421992758939900645330 /* InvestmentReturnModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +117,7 @@
 		8724217927587D0100645330 /* FLITChartTests */ = {
 			isa = PBXGroup;
 			children = (
-				8724217A27587D0100645330 /* InvestmentReturnCalculatorTests.swift */,
+				8724217A27587D0100645330 /* InvestmentReturnsModelTests.swift */,
 			);
 			path = FLITChartTests;
 			sourceTree = "<group>";
@@ -146,8 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				87242197275892AF00645330 /* InvestmentReturnCalculator.swift */,
-				8724219427588B9D00645330 /* InvestmentAttributes.swift */,
-				872421992758939900645330 /* InvestmentReturnModel.swift */,
+				8724219427588B9D00645330 /* InvestmentReturnsModel.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -285,9 +282,8 @@
 			files = (
 				87242198275892B000645330 /* InvestmentReturnCalculator.swift in Sources */,
 				8724216827587CFF00645330 /* ViewController.swift in Sources */,
-				8724219527588B9D00645330 /* InvestmentAttributes.swift in Sources */,
+				8724219527588B9D00645330 /* InvestmentReturnsModel.swift in Sources */,
 				8724216427587CFF00645330 /* AppDelegate.swift in Sources */,
-				8724219A2758939900645330 /* InvestmentReturnModel.swift in Sources */,
 				8724216627587CFF00645330 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,7 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8724217B27587D0100645330 /* InvestmentReturnCalculatorTests.swift in Sources */,
+				8724217B27587D0100645330 /* InvestmentReturnsModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
