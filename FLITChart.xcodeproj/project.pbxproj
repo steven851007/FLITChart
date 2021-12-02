@@ -16,6 +16,7 @@
 		8724217B27587D0100645330 /* FLITChartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724217A27587D0100645330 /* FLITChartTests.swift */; };
 		8724218527587D0100645330 /* FLITChartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724218427587D0100645330 /* FLITChartUITests.swift */; };
 		8724218727587D0100645330 /* FLITChartUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724218627587D0100645330 /* FLITChartUITestsLaunchTests.swift */; };
+		8724219527588B9D00645330 /* InvestmentAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724219427588B9D00645330 /* InvestmentAttributes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		8724218027587D0100645330 /* FLITChartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FLITChartUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8724218427587D0100645330 /* FLITChartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLITChartUITests.swift; sourceTree = "<group>"; };
 		8724218627587D0100645330 /* FLITChartUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLITChartUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8724219427588B9D00645330 /* InvestmentAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentAttributes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +103,7 @@
 			children = (
 				8724216327587CFF00645330 /* AppDelegate.swift */,
 				8724216527587CFF00645330 /* SceneDelegate.swift */,
-				8724216727587CFF00645330 /* ViewController.swift */,
+				8724219327588B7300645330 /* WealthCalculator */,
 				8724216927587CFF00645330 /* Main.storyboard */,
 				8724216C27587D0100645330 /* Assets.xcassets */,
 				8724216E27587D0100645330 /* LaunchScreen.storyboard */,
@@ -125,6 +127,15 @@
 				8724218627587D0100645330 /* FLITChartUITestsLaunchTests.swift */,
 			);
 			path = FLITChartUITests;
+			sourceTree = "<group>";
+		};
+		8724219327588B7300645330 /* WealthCalculator */ = {
+			isa = PBXGroup;
+			children = (
+				8724216727587CFF00645330 /* ViewController.swift */,
+				8724219427588B9D00645330 /* InvestmentAttributes.swift */,
+			);
+			path = WealthCalculator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8724216827587CFF00645330 /* ViewController.swift in Sources */,
+				8724219527588B9D00645330 /* InvestmentAttributes.swift in Sources */,
 				8724216427587CFF00645330 /* AppDelegate.swift in Sources */,
 				8724216627587CFF00645330 /* SceneDelegate.swift in Sources */,
 			);
