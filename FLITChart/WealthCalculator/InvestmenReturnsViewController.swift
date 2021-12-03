@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class InvestmenReturnsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

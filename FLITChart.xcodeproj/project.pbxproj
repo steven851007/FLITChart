@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		8724216427587CFF00645330 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724216327587CFF00645330 /* AppDelegate.swift */; };
 		8724216627587CFF00645330 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724216527587CFF00645330 /* SceneDelegate.swift */; };
-		8724216827587CFF00645330 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724216727587CFF00645330 /* ViewController.swift */; };
+		8724216827587CFF00645330 /* InvestmenReturnsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724216727587CFF00645330 /* InvestmenReturnsViewController.swift */; };
 		8724216B27587CFF00645330 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8724216927587CFF00645330 /* Main.storyboard */; };
 		8724216D27587D0100645330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8724216C27587D0100645330 /* Assets.xcassets */; };
 		8724217027587D0100645330 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8724216E27587D0100645330 /* LaunchScreen.storyboard */; };
@@ -44,7 +44,7 @@
 		8724216027587CFF00645330 /* FLITChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FLITChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8724216327587CFF00645330 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8724216527587CFF00645330 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8724216727587CFF00645330 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8724216727587CFF00645330 /* InvestmenReturnsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmenReturnsViewController.swift; sourceTree = "<group>"; };
 		8724216A27587CFF00645330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8724216C27587D0100645330 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8724216F27587D0100645330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -112,7 +112,6 @@
 				8724216327587CFF00645330 /* AppDelegate.swift */,
 				8724216527587CFF00645330 /* SceneDelegate.swift */,
 				8724219327588B7300645330 /* WealthCalculator */,
-				8724216927587CFF00645330 /* Main.storyboard */,
 				8724216C27587D0100645330 /* Assets.xcassets */,
 				8724216E27587D0100645330 /* LaunchScreen.storyboard */,
 				8724217127587D0100645330 /* Info.plist */,
@@ -141,7 +140,8 @@
 		8724219327588B7300645330 /* WealthCalculator */ = {
 			isa = PBXGroup;
 			children = (
-				8724216727587CFF00645330 /* ViewController.swift */,
+				8724216927587CFF00645330 /* Main.storyboard */,
+				8724216727587CFF00645330 /* InvestmenReturnsViewController.swift */,
 				8724219627588EE400645330 /* Domain */,
 				87E64C292759E64F004779EE /* Presenter */,
 			);
@@ -298,7 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87242198275892B000645330 /* InvestmentReturnCalculator.swift in Sources */,
-				8724216827587CFF00645330 /* ViewController.swift in Sources */,
+				8724216827587CFF00645330 /* InvestmenReturnsViewController.swift in Sources */,
 				87E64C2B2759E661004779EE /* InvestmentReturnsViewModel.swift in Sources */,
 				8724219527588B9D00645330 /* InvestmentReturnsModel.swift in Sources */,
 				8724216427587CFF00645330 /* AppDelegate.swift in Sources */,
