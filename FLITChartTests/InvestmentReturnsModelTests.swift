@@ -8,8 +8,6 @@
 import XCTest
 import FLITChart
 
-import Darwin
-
 class InvestmentReturnsModelTests: XCTestCase {
     
     func test_wealthCalculator_returnsInitialInvestmentForZeroMonths() {

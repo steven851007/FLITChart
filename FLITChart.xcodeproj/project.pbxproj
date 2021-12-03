@@ -18,6 +18,9 @@
 		8724218727587D0100645330 /* FLITChartUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724218627587D0100645330 /* FLITChartUITestsLaunchTests.swift */; };
 		8724219527588B9D00645330 /* InvestmentReturnsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724219427588B9D00645330 /* InvestmentReturnsModel.swift */; };
 		87242198275892B000645330 /* InvestmentReturnCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87242197275892AF00645330 /* InvestmentReturnCalculator.swift */; };
+		87E64C262759E1D7004779EE /* InvestmentReturnPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E64C252759E1D7004779EE /* InvestmentReturnPresenterTests.swift */; };
+		87E64C282759E64B004779EE /* InvestmentReturnsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E64C272759E64B004779EE /* InvestmentReturnsPresenter.swift */; };
+		87E64C2B2759E661004779EE /* InvestmentReturnsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E64C2A2759E661004779EE /* InvestmentReturnsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		8724218627587D0100645330 /* FLITChartUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLITChartUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8724219427588B9D00645330 /* InvestmentReturnsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnsModel.swift; sourceTree = "<group>"; };
 		87242197275892AF00645330 /* InvestmentReturnCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnCalculator.swift; sourceTree = "<group>"; };
+		87E64C252759E1D7004779EE /* InvestmentReturnPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnPresenterTests.swift; sourceTree = "<group>"; };
+		87E64C272759E64B004779EE /* InvestmentReturnsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnsPresenter.swift; sourceTree = "<group>"; };
+		87E64C2A2759E661004779EE /* InvestmentReturnsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				8724217A27587D0100645330 /* InvestmentReturnsModelTests.swift */,
+				87E64C252759E1D7004779EE /* InvestmentReturnPresenterTests.swift */,
 			);
 			path = FLITChartTests;
 			sourceTree = "<group>";
@@ -136,6 +143,7 @@
 			children = (
 				8724216727587CFF00645330 /* ViewController.swift */,
 				8724219627588EE400645330 /* Domain */,
+				87E64C292759E64F004779EE /* Presenter */,
 			);
 			path = WealthCalculator;
 			sourceTree = "<group>";
@@ -147,6 +155,15 @@
 				8724219427588B9D00645330 /* InvestmentReturnsModel.swift */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		87E64C292759E64F004779EE /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				87E64C272759E64B004779EE /* InvestmentReturnsPresenter.swift */,
+				87E64C2A2759E661004779EE /* InvestmentReturnsViewModel.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,8 +299,10 @@
 			files = (
 				87242198275892B000645330 /* InvestmentReturnCalculator.swift in Sources */,
 				8724216827587CFF00645330 /* ViewController.swift in Sources */,
+				87E64C2B2759E661004779EE /* InvestmentReturnsViewModel.swift in Sources */,
 				8724219527588B9D00645330 /* InvestmentReturnsModel.swift in Sources */,
 				8724216427587CFF00645330 /* AppDelegate.swift in Sources */,
+				87E64C282759E64B004779EE /* InvestmentReturnsPresenter.swift in Sources */,
 				8724216627587CFF00645330 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8724217B27587D0100645330 /* InvestmentReturnsModelTests.swift in Sources */,
+				87E64C262759E1D7004779EE /* InvestmentReturnPresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
