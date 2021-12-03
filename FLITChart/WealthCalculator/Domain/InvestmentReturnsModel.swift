@@ -32,15 +32,15 @@ public struct InvestmentReturnsOverTime {
 public struct InvestmentReturnsModel {
     public let initialInvestment: NSDecimalNumber
     public let monthlyContribution: NSDecimalNumber
-    public let annualReturn: AnnualReturnPercentages
+    public let annualReturns: AnnualReturnPercentages
     public let lengthOfInvestmentInMonths: UInt
     public let investmentReturnsOverTime: InvestmentReturnsOverTime
     
-    public init(initialInvestment: NSDecimalNumber, monthlyContribution: NSDecimalNumber, annualReturn: AnnualReturnPercentages, lengthOfInvestmentInMonths: UInt) {
+    public init(initialInvestment: NSDecimalNumber, monthlyContribution: NSDecimalNumber, annualReturns : AnnualReturnPercentages, lengthOfInvestmentInMonths: UInt) {
         self.initialInvestment = initialInvestment
         self.monthlyContribution = monthlyContribution
-        self.annualReturn = annualReturn
+        self.annualReturns = annualReturns
         self.lengthOfInvestmentInMonths = lengthOfInvestmentInMonths
-        self.investmentReturnsOverTime = InvestmentReturnCalculator.calcualteInvestmentOverTime(initialInvestment: initialInvestment, monthlyContribution: monthlyContribution, annualReturn: annualReturn, lengthOfInvestmentInMonths: lengthOfInvestmentInMonths)
+        self.investmentReturnsOverTime = InvestmentReturnCalculator.calcualteInvestmentOverTime(initialInvestment: initialInvestment, monthlyContribution: monthlyContribution, annualReturn: annualReturns, lengthOfInvestmentInMonths: lengthOfInvestmentInMonths)
     }
 }

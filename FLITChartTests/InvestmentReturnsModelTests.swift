@@ -72,6 +72,6 @@ class InvestmentReturnsModelTests: XCTestCase {
     
     private func createSUT(initialInvestment: NSDecimalNumber, lengthInMonths: UInt) -> InvestmentReturnsModel {
         let annualReturns = AnnualReturnPercentages(worstCase: 2.15, averageWorstCase: 5.3, averageBestCase: 8.72, bestCase: 9.5)
-        return InvestmentReturnsModel(initialInvestment: initialInvestment, monthlyContribution: 500, annualReturn: annualReturns, lengthOfInvestmentInMonths: lengthInMonths)
+        return InvestmentReturnsModel(initialInvestment: initialInvestment, monthlyContribution: 500, annualReturns: annualReturns, lengthOfInvestmentInMonths: lengthInMonths)
     }
 }
