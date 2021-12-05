@@ -13,7 +13,6 @@ public final class InvestmentReturnsPresenter {
         let currencyFormatter = NumberFormatter()
         currencyFormatter.usesGroupingSeparator = true
         currencyFormatter.numberStyle = .currency
-        // localize to your grouping and decimal separator
         currencyFormatter.locale = Locale(identifier: "en_US")
         return currencyFormatter
     }()
@@ -22,7 +21,6 @@ public final class InvestmentReturnsPresenter {
 
         let initialInvestmentValue = currencyFormatter.string(from: investmentReturnsModel.initialInvestment)!
         let monthlyContributionValue = currencyFormatter.string(from: investmentReturnsModel.monthlyContribution)!
-        
         
         return InvestmentReturnsViewModel(initialInvestmentValue: initialInvestmentValue, monthlyContributionValue: monthlyContributionValue)
     }
