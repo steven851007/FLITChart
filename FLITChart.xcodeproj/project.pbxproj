@@ -10,7 +10,7 @@
 		8724216427587CFF00645330 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724216327587CFF00645330 /* AppDelegate.swift */; };
 		8724216627587CFF00645330 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724216527587CFF00645330 /* SceneDelegate.swift */; };
 		8724216827587CFF00645330 /* InvestmenReturnsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724216727587CFF00645330 /* InvestmenReturnsViewController.swift */; };
-		8724216B27587CFF00645330 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8724216927587CFF00645330 /* Main.storyboard */; };
+		8724216B27587CFF00645330 /* InvestmentReturns.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8724216927587CFF00645330 /* InvestmentReturns.storyboard */; };
 		8724216D27587D0100645330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8724216C27587D0100645330 /* Assets.xcassets */; };
 		8724217027587D0100645330 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8724216E27587D0100645330 /* LaunchScreen.storyboard */; };
 		8724217B27587D0100645330 /* InvestmentReturnsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724217A27587D0100645330 /* InvestmentReturnsModelTests.swift */; };
@@ -21,6 +21,12 @@
 		87E64C262759E1D7004779EE /* InvestmentReturnPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E64C252759E1D7004779EE /* InvestmentReturnPresenterTests.swift */; };
 		87E64C282759E64B004779EE /* InvestmentReturnsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E64C272759E64B004779EE /* InvestmentReturnsPresenter.swift */; };
 		87E64C2B2759E661004779EE /* InvestmentReturnsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E64C2A2759E661004779EE /* InvestmentReturnsViewModel.swift */; };
+		87F13FB1275C682C00918997 /* InvestmenReturnsSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F13FB0275C682C00918997 /* InvestmenReturnsSnapshotTests.swift */; };
+		87F13FB3275C6A3E00918997 /* XCTestCase+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F13FB2275C6A3E00918997 /* XCTestCase+Snapshot.swift */; };
+		87F13FB6275C6A9500918997 /* UIViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F13FB5275C6A9500918997 /* UIViewController+Snapshot.swift */; };
+		87F13FBC275C6C7700918997 /* INVESTMENTRETURNS_WITH_CONTENT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 87F13FB9275C6C7700918997 /* INVESTMENTRETURNS_WITH_CONTENT_dark.png */; };
+		87F13FBD275C6C7700918997 /* INVESTMENTRETURNS_WITH_CONTENT_light_extraExtraExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 87F13FBA275C6C7700918997 /* INVESTMENTRETURNS_WITH_CONTENT_light_extraExtraExtraLarge.png */; };
+		87F13FBE275C6C7700918997 /* INVESTMENTRETURNS_WITH_CONTENT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 87F13FBB275C6C7700918997 /* INVESTMENTRETURNS_WITH_CONTENT_light.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +51,7 @@
 		8724216327587CFF00645330 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8724216527587CFF00645330 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8724216727587CFF00645330 /* InvestmenReturnsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmenReturnsViewController.swift; sourceTree = "<group>"; };
-		8724216A27587CFF00645330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8724216A27587CFF00645330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/InvestmentReturns.storyboard; sourceTree = "<group>"; };
 		8724216C27587D0100645330 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8724216F27587D0100645330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8724217127587D0100645330 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,6 +65,12 @@
 		87E64C252759E1D7004779EE /* InvestmentReturnPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnPresenterTests.swift; sourceTree = "<group>"; };
 		87E64C272759E64B004779EE /* InvestmentReturnsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnsPresenter.swift; sourceTree = "<group>"; };
 		87E64C2A2759E661004779EE /* InvestmentReturnsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnsViewModel.swift; sourceTree = "<group>"; };
+		87F13FB0275C682C00918997 /* InvestmenReturnsSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmenReturnsSnapshotTests.swift; sourceTree = "<group>"; };
+		87F13FB2275C6A3E00918997 /* XCTestCase+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Snapshot.swift"; sourceTree = "<group>"; };
+		87F13FB5275C6A9500918997 /* UIViewController+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Snapshot.swift"; sourceTree = "<group>"; };
+		87F13FB9275C6C7700918997 /* INVESTMENTRETURNS_WITH_CONTENT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = INVESTMENTRETURNS_WITH_CONTENT_dark.png; path = snapshots/INVESTMENTRETURNS_WITH_CONTENT_dark.png; sourceTree = "<group>"; };
+		87F13FBA275C6C7700918997 /* INVESTMENTRETURNS_WITH_CONTENT_light_extraExtraExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = INVESTMENTRETURNS_WITH_CONTENT_light_extraExtraExtraLarge.png; path = snapshots/INVESTMENTRETURNS_WITH_CONTENT_light_extraExtraExtraLarge.png; sourceTree = "<group>"; };
+		87F13FBB275C6C7700918997 /* INVESTMENTRETURNS_WITH_CONTENT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = INVESTMENTRETURNS_WITH_CONTENT_light.png; path = snapshots/INVESTMENTRETURNS_WITH_CONTENT_light.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +136,7 @@
 			children = (
 				8724217A27587D0100645330 /* InvestmentReturnsModelTests.swift */,
 				87E64C252759E1D7004779EE /* InvestmentReturnPresenterTests.swift */,
+				87F13FB7275C6BEA00918997 /* InvestmentReturns UI */,
 			);
 			path = FLITChartTests;
 			sourceTree = "<group>";
@@ -140,7 +153,7 @@
 		8724219327588B7300645330 /* WealthCalculator */ = {
 			isa = PBXGroup;
 			children = (
-				8724216927587CFF00645330 /* Main.storyboard */,
+				8724216927587CFF00645330 /* InvestmentReturns.storyboard */,
 				8724216727587CFF00645330 /* InvestmenReturnsViewController.swift */,
 				8724219627588EE400645330 /* Domain */,
 				87E64C292759E64F004779EE /* Presenter */,
@@ -164,6 +177,35 @@
 				87E64C2A2759E661004779EE /* InvestmentReturnsViewModel.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		87F13FB4275C6A4000918997 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				87F13FB2275C6A3E00918997 /* XCTestCase+Snapshot.swift */,
+				87F13FB5275C6A9500918997 /* UIViewController+Snapshot.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		87F13FB7275C6BEA00918997 /* InvestmentReturns UI */ = {
+			isa = PBXGroup;
+			children = (
+				87F13FB4275C6A4000918997 /* Helpers */,
+				87F13FB8275C6BF600918997 /* snapshots */,
+				87F13FB0275C682C00918997 /* InvestmenReturnsSnapshotTests.swift */,
+			);
+			path = "InvestmentReturns UI";
+			sourceTree = "<group>";
+		};
+		87F13FB8275C6BF600918997 /* snapshots */ = {
+			isa = PBXGroup;
+			children = (
+				87F13FB9275C6C7700918997 /* INVESTMENTRETURNS_WITH_CONTENT_dark.png */,
+				87F13FBA275C6C7700918997 /* INVESTMENTRETURNS_WITH_CONTENT_light_extraExtraExtraLarge.png */,
+				87F13FBB275C6C7700918997 /* INVESTMENTRETURNS_WITH_CONTENT_light.png */,
+			);
+			path = snapshots;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,7 +314,7 @@
 			files = (
 				8724217027587D0100645330 /* LaunchScreen.storyboard in Resources */,
 				8724216D27587D0100645330 /* Assets.xcassets in Resources */,
-				8724216B27587CFF00645330 /* Main.storyboard in Resources */,
+				8724216B27587CFF00645330 /* InvestmentReturns.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +322,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87F13FBD275C6C7700918997 /* INVESTMENTRETURNS_WITH_CONTENT_light_extraExtraExtraLarge.png in Resources */,
+				87F13FBE275C6C7700918997 /* INVESTMENTRETURNS_WITH_CONTENT_light.png in Resources */,
+				87F13FBC275C6C7700918997 /* INVESTMENTRETURNS_WITH_CONTENT_dark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,7 +356,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87F13FB1275C682C00918997 /* InvestmenReturnsSnapshotTests.swift in Sources */,
+				87F13FB6275C6A9500918997 /* UIViewController+Snapshot.swift in Sources */,
 				8724217B27587D0100645330 /* InvestmentReturnsModelTests.swift in Sources */,
+				87F13FB3275C6A3E00918997 /* XCTestCase+Snapshot.swift in Sources */,
 				87E64C262759E1D7004779EE /* InvestmentReturnPresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,12 +389,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8724216927587CFF00645330 /* Main.storyboard */ = {
+		8724216927587CFF00645330 /* InvestmentReturns.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				8724216A27587CFF00645330 /* Base */,
 			);
-			name = Main.storyboard;
+			name = InvestmentReturns.storyboard;
 			sourceTree = "<group>";
 		};
 		8724216E27587D0100645330 /* LaunchScreen.storyboard */ = {
@@ -487,7 +535,7 @@
 				INFOPLIST_FILE = FLITChart/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = InvestmentReturns;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -514,7 +562,7 @@
 				INFOPLIST_FILE = FLITChart/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = InvestmentReturns;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

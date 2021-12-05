@@ -7,9 +7,9 @@
 
 import UIKit
 
-class InvestmenReturnsViewController: UIViewController {
+public class InvestmenReturnsViewController: UIViewController {
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
