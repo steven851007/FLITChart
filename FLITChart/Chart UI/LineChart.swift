@@ -21,6 +21,83 @@ extension PointEntry: Comparable {
     }
 }
 
+struct LineLayer {
+    
+    let topHorizontalLine: CGFloat = 110.0 / 100.0
+    let lineGap: CGFloat = 60.0
+    
+    let dataEntries: [PointEntry]
+    
+    
+    init(dataEntries: [PointEntry]) {
+        self.dataEntries = dataEntries
+    }
+    
+    func drawCurvedChart(height: CGFloat) -> CALayer? {
+        let dataPoints = convertDataEntriesToPoints(entries: dataEntries, height: height)
+        guard dataPoints.count > 0 else {
+            return nil
+        }
+        if let path = CurveAlgorithm.shared.createCurvedPath(dataPoints) {
+            let dataLayer: CALayer = CALayer()
+            let lineLayer = CAShapeLayer()
+            lineLayer.path = path.cgPath
+            lineLayer.strokeColor = UIColor.white.cgColor
+            lineLayer.fillColor = UIColor.clear.cgColor
+            dataLayer.addSublayer(lineLayer)
+            return dataLayer
+        }
+        return nil
+    }
+    
+    private func convertDataEntriesToPoints(entries: [PointEntry], height: CGFloat) -> [CGPoint] {
+        if let max = entries.max()?.value,
+            let min = entries.min()?.value {
+            
+            var result: [CGPoint] = []
+            let minMaxRange: CGFloat = CGFloat(max - min) * topHorizontalLine
+            
+            for i in 0..<entries.count {
+                let height = height * (1 - ((CGFloat(entries[i].value) - CGFloat(min)) / minMaxRange))
+                let point = CGPoint(x: CGFloat(i)*lineGap + 40, y: height)
+                result.append(point)
+            }
+            return result
+        }
+        return []
+    }
+    
+    /**
+     Create a gradient layer below the line that connecting all dataPoints
+     */
+    func maskGradientLayer(height: CGFloat) -> CAGradientLayer? {
+        let dataPoints = convertDataEntriesToPoints(entries: dataEntries, height: height)
+        if dataPoints.count > 0 {
+
+            let path = UIBezierPath()
+            path.move(to: CGPoint(x: dataPoints[0].x, y: height))
+            path.addLine(to: dataPoints[0])
+            if let curvedPath = CurveAlgorithm.shared.createCurvedPath(dataPoints) {
+                path.append(curvedPath)
+            }
+            path.addLine(to: CGPoint(x: dataPoints[dataPoints.count-1].x, y: height))
+            path.addLine(to: CGPoint(x: dataPoints[0].x, y: height))
+
+            let maskLayer = CAShapeLayer()
+            maskLayer.path = path.cgPath
+            maskLayer.fillColor = UIColor.white.cgColor
+            maskLayer.strokeColor = UIColor.clear.cgColor
+            maskLayer.lineWidth = 0.0
+
+            let gradientLayer: CAGradientLayer = CAGradientLayer()
+            gradientLayer.colors = [#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7).cgColor, UIColor.clear.cgColor]
+            gradientLayer.mask = maskLayer
+            return gradientLayer
+        }
+        return nil
+    }
+}
+
 class LineChart: UIView {
     
     /// gap between each point
@@ -41,91 +118,12 @@ class LineChart: UIView {
     /// Dot outer Radius
     var outerRadius: CGFloat = 12
     
-    struct LineLayer {
-        
-        let topHorizontalLine: CGFloat = 110.0 / 100.0
-        let lineGap: CGFloat = 60.0
-        
-        let dataEntries: [PointEntry]
-        
-        
-        init(dataEntries: [PointEntry]) {
-            self.dataEntries = dataEntries
-        }
-        
-        func drawCurvedChart(height: CGFloat) -> CALayer? {
-            let dataPoints = convertDataEntriesToPoints(entries: dataEntries, height: height)
-            guard dataPoints.count > 0 else {
-                return nil
-            }
-            if let path = CurveAlgorithm.shared.createCurvedPath(dataPoints) {
-                let dataLayer: CALayer = CALayer()
-                let lineLayer = CAShapeLayer()
-                lineLayer.path = path.cgPath
-                lineLayer.strokeColor = UIColor.white.cgColor
-                lineLayer.fillColor = UIColor.clear.cgColor
-                dataLayer.addSublayer(lineLayer)
-                return dataLayer
-            }
-            return nil
-        }
-        
-        private func convertDataEntriesToPoints(entries: [PointEntry], height: CGFloat) -> [CGPoint] {
-            if let max = entries.max()?.value,
-                let min = entries.min()?.value {
-                
-                var result: [CGPoint] = []
-                let minMaxRange: CGFloat = CGFloat(max - min) * topHorizontalLine
-                
-                for i in 0..<entries.count {
-                    let height = height * (1 - ((CGFloat(entries[i].value) - CGFloat(min)) / minMaxRange))
-                    let point = CGPoint(x: CGFloat(i)*lineGap + 40, y: height)
-                    result.append(point)
-                }
-                return result
-            }
-            return []
-        }
-        
-        /**
-         Create a gradient layer below the line that connecting all dataPoints
-         */
-        func maskGradientLayer(height: CGFloat) -> CAGradientLayer? {
-            let dataPoints = convertDataEntriesToPoints(entries: dataEntries, height: height)
-            if dataPoints.count > 0 {
-
-                let path = UIBezierPath()
-                path.move(to: CGPoint(x: dataPoints[0].x, y: height))
-                path.addLine(to: dataPoints[0])
-                if let curvedPath = CurveAlgorithm.shared.createCurvedPath(dataPoints) {
-                    path.append(curvedPath)
-                }
-                path.addLine(to: CGPoint(x: dataPoints[dataPoints.count-1].x, y: height))
-                path.addLine(to: CGPoint(x: dataPoints[0].x, y: height))
-
-                let maskLayer = CAShapeLayer()
-                maskLayer.path = path.cgPath
-                maskLayer.fillColor = UIColor.white.cgColor
-                maskLayer.strokeColor = UIColor.clear.cgColor
-                maskLayer.lineWidth = 0.0
-
-                let gradientLayer: CAGradientLayer = CAGradientLayer()
-                gradientLayer.colors = [#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7).cgColor, UIColor.clear.cgColor]
-                gradientLayer.mask = maskLayer
-                return gradientLayer
-            }
-            return nil
-        }
-    }
-    
     var lineLayer: LineLayer?
+
     
-    var dataEntries: [PointEntry]? {
-        didSet {
-        
-            self.lineLayer = LineLayer(dataEntries: dataEntries!)
-            self.setNeedsLayout()
-        }
+    func addDataEntry(_ entry: [PointEntry]) {
+        self.lineLayer = LineLayer(dataEntries: entry)
+        self.setNeedsLayout()
     }
     
     /// Contains dataLayer and gradientLayer
@@ -165,7 +163,7 @@ class LineChart: UIView {
     
     override func layoutSubviews() {
         scrollView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
-        if let dataEntries = dataEntries {
+        if let dataEntries = lineLayer?.dataEntries {
             scrollView.contentSize = CGSize(width: CGFloat(dataEntries.count) * lineGap, height: self.frame.size.height)
             mainLayer.frame = CGRect(x: 0, y: 0, width: CGFloat(dataEntries.count) * lineGap, height: self.frame.size.height)
 
@@ -228,7 +226,7 @@ class LineChart: UIView {
      Create titles at the bottom for all entries showed in the chart
      */
     private func drawLables() {
-        if let dataEntries = dataEntries,
+        if let dataEntries = lineLayer?.dataEntries,
             dataEntries.count > 0 {
             for i in 0..<dataEntries.count {
                 let textLayer = CATextLayer()
@@ -249,7 +247,7 @@ class LineChart: UIView {
      Create horizontal lines (grid lines) and show the value of each line
      */
     private func drawHorizontalLines() {
-        guard let dataEntries = dataEntries else {
+        guard let dataEntries = lineLayer?.dataEntries else {
             return
         }
         
@@ -280,8 +278,8 @@ class LineChart: UIView {
                 
                 var minMaxGap:CGFloat = 0
                 var lineValue:Int = 0
-                if let max = dataEntries.max()?.value,
-                    let min = dataEntries.min()?.value {
+                if let max = self.lineLayer?.dataEntries.max()?.value,
+                   let min = self.lineLayer?.dataEntries.min()?.value {
                     minMaxGap = CGFloat(max - min) * topHorizontalLine
                     lineValue = Int((1-value) * minMaxGap) + Int(min)
                 }

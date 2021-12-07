@@ -15,7 +15,7 @@ public class InvestmenReturnsViewController: UIViewController {
         super.viewDidLoad()
         let dataEntries = generateRandomEntries()
         
-        chartView.dataEntries = dataEntries
+        chartView.addDataEntry(dataEntries)
     }
 
 
