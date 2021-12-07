@@ -35,12 +35,6 @@ class LineChart: UIView {
     /// The top most horizontal line in the chart will be 10% higher than the highest value in the chart
     let topHorizontalLine: CGFloat = 110.0 / 100.0
 
-    /// Active or desactive animation on dots
-    var animateDots: Bool = false
-
-    /// Active or desactive dots
-    var showDots: Bool = false
-
     /// Dot inner Radius
     var innerRadius: CGFloat = 8
 
@@ -106,7 +100,6 @@ class LineChart: UIView {
             gradientLayer.frame = dataLayer.frame
             dataPoints = convertDataEntriesToPoints(entries: dataEntries)
             gridLayer.frame = CGRect(x: 0, y: topSpace, width: self.frame.width, height: mainLayer.frame.height - topSpace - bottomSpace)
-            if showDots { drawDots() }
             clean()
             drawHorizontalLines()
             drawCurvedChart()
@@ -278,35 +271,6 @@ class LineChart: UIView {
         })
         dataLayer.sublayers?.forEach({$0.removeFromSuperlayer()})
         gridLayer.sublayers?.forEach({$0.removeFromSuperlayer()})
-    }
-    /**
-     Create Dots on line points
-     */
-    private func drawDots() {
-        var dotLayers: [DotCALayer] = []
-        if let dataPoints = dataPoints {
-            for dataPoint in dataPoints {
-                let xValue = dataPoint.x - outerRadius/2
-                let yValue = (dataPoint.y + lineGap) - (outerRadius * 2)
-                let dotLayer = DotCALayer()
-                dotLayer.dotInnerColor = UIColor.white
-                dotLayer.innerRadius = innerRadius
-                dotLayer.backgroundColor = UIColor.white.cgColor
-                dotLayer.cornerRadius = outerRadius / 2
-                dotLayer.frame = CGRect(x: xValue, y: yValue, width: outerRadius, height: outerRadius)
-                dotLayers.append(dotLayer)
-
-                mainLayer.addSublayer(dotLayer)
-
-                if animateDots {
-                    let anim = CABasicAnimation(keyPath: "opacity")
-                    anim.duration = 1.0
-                    anim.fromValue = 0
-                    anim.toValue = 1
-                    dotLayer.add(anim, forKey: "opacity")
-                }
-            }
-        }
     }
 }
 
