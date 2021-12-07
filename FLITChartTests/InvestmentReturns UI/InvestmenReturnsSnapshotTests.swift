@@ -15,9 +15,9 @@ class InvestmenReturnsSnapshotTests: XCTestCase {
 
 //        sut.display(feedWithContent())
 
-        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "INVESTMENTRETURNS_WITH_CONTENT_light")
-        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "INVESTMENTRETURNS_WITH_CONTENT_dark")
-        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light, contentSize: .extraExtraExtraLarge)), named: "INVESTMENTRETURNS_WITH_CONTENT_light_extraExtraExtraLarge")
+        record(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "INVESTMENTRETURNS_WITH_CONTENT_light")
+        record(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "INVESTMENTRETURNS_WITH_CONTENT_dark")
+        record(snapshot: sut.snapshot(for: .iPhone13(style: .light, contentSize: .extraExtraExtraLarge)), named: "INVESTMENTRETURNS_WITH_CONTENT_light_extraExtraExtraLarge")
     }
     
     private func makeSUT() -> InvestmenReturnsViewController {

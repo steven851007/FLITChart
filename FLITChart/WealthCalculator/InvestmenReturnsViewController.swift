@@ -9,6 +9,8 @@ import UIKit
 
 public class InvestmenReturnsViewController: UIViewController {
 
+    @IBOutlet weak var chartView: UIView!
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
