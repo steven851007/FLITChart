@@ -34,8 +34,6 @@ class LineChart: UIView {
     
     /// The top most horizontal line in the chart will be 10% higher than the highest value in the chart
     let topHorizontalLine: CGFloat = 110.0 / 100.0
-    
-    var isCurved: Bool = false
 
     /// Active or desactive animation on dots
     var animateDots: Bool = false
@@ -111,11 +109,8 @@ class LineChart: UIView {
             if showDots { drawDots() }
             clean()
             drawHorizontalLines()
-            if isCurved {
-                drawCurvedChart()
-            } else {
-                drawChart()
-            }
+            drawCurvedChart()
+        
             maskGradientLayer()
             drawLables()
         }
@@ -139,22 +134,6 @@ class LineChart: UIView {
             return result
         }
         return []
-    }
-    
-    /**
-     Draw a zigzag line connecting all points in dataPoints
-     */
-    private func drawChart() {
-        if let dataPoints = dataPoints,
-            dataPoints.count > 0,
-            let path = createPath() {
-            
-            let lineLayer = CAShapeLayer()
-            lineLayer.path = path.cgPath
-            lineLayer.strokeColor = UIColor.white.cgColor
-            lineLayer.fillColor = UIColor.clear.cgColor
-            dataLayer.addSublayer(lineLayer)
-        }
     }
 
     /**
@@ -199,11 +178,8 @@ class LineChart: UIView {
             let path = UIBezierPath()
             path.move(to: CGPoint(x: dataPoints[0].x, y: dataLayer.frame.height))
             path.addLine(to: dataPoints[0])
-            if isCurved,
-                let curvedPath = CurveAlgorithm.shared.createCurvedPath(dataPoints) {
+            if let curvedPath = CurveAlgorithm.shared.createCurvedPath(dataPoints) {
                 path.append(curvedPath)
-            } else if let straightPath = createPath() {
-                path.append(straightPath)
             }
             path.addLine(to: CGPoint(x: dataPoints[dataPoints.count-1].x, y: dataLayer.frame.height))
             path.addLine(to: CGPoint(x: dataPoints[0].x, y: dataLayer.frame.height))
