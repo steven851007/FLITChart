@@ -41,17 +41,92 @@ class LineChart: UIView {
     /// Dot outer Radius
     var outerRadius: CGFloat = 12
     
-    var dataEntries: [PointEntry]? {
-        didSet {
-            self.setNeedsLayout()
+    struct LineLayer {
+        
+        let topHorizontalLine: CGFloat = 110.0 / 100.0
+        let lineGap: CGFloat = 60.0
+        
+        let dataEntries: [PointEntry]
+        
+        
+        init(dataEntries: [PointEntry]) {
+            self.dataEntries = dataEntries
+        }
+        
+        func drawCurvedChart(height: CGFloat) -> CALayer? {
+            let dataPoints = convertDataEntriesToPoints(entries: dataEntries, height: height)
+            guard dataPoints.count > 0 else {
+                return nil
+            }
+            if let path = CurveAlgorithm.shared.createCurvedPath(dataPoints) {
+                let dataLayer: CALayer = CALayer()
+                let lineLayer = CAShapeLayer()
+                lineLayer.path = path.cgPath
+                lineLayer.strokeColor = UIColor.white.cgColor
+                lineLayer.fillColor = UIColor.clear.cgColor
+                dataLayer.addSublayer(lineLayer)
+                return dataLayer
+            }
+            return nil
+        }
+        
+        private func convertDataEntriesToPoints(entries: [PointEntry], height: CGFloat) -> [CGPoint] {
+            if let max = entries.max()?.value,
+                let min = entries.min()?.value {
+                
+                var result: [CGPoint] = []
+                let minMaxRange: CGFloat = CGFloat(max - min) * topHorizontalLine
+                
+                for i in 0..<entries.count {
+                    let height = height * (1 - ((CGFloat(entries[i].value) - CGFloat(min)) / minMaxRange))
+                    let point = CGPoint(x: CGFloat(i)*lineGap + 40, y: height)
+                    result.append(point)
+                }
+                return result
+            }
+            return []
+        }
+        
+        /**
+         Create a gradient layer below the line that connecting all dataPoints
+         */
+        func maskGradientLayer(height: CGFloat) -> CAGradientLayer? {
+            let dataPoints = convertDataEntriesToPoints(entries: dataEntries, height: height)
+            if dataPoints.count > 0 {
+
+                let path = UIBezierPath()
+                path.move(to: CGPoint(x: dataPoints[0].x, y: height))
+                path.addLine(to: dataPoints[0])
+                if let curvedPath = CurveAlgorithm.shared.createCurvedPath(dataPoints) {
+                    path.append(curvedPath)
+                }
+                path.addLine(to: CGPoint(x: dataPoints[dataPoints.count-1].x, y: height))
+                path.addLine(to: CGPoint(x: dataPoints[0].x, y: height))
+
+                let maskLayer = CAShapeLayer()
+                maskLayer.path = path.cgPath
+                maskLayer.fillColor = UIColor.white.cgColor
+                maskLayer.strokeColor = UIColor.clear.cgColor
+                maskLayer.lineWidth = 0.0
+
+                let gradientLayer: CAGradientLayer = CAGradientLayer()
+                gradientLayer.colors = [#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7).cgColor, UIColor.clear.cgColor]
+                gradientLayer.mask = maskLayer
+                return gradientLayer
+            }
+            return nil
         }
     }
     
-    /// Contains the main line which represents the data
-    private let dataLayer: CALayer = CALayer()
+    var lineLayer: LineLayer?
     
-    /// To show the gradient below the main line
-    private let gradientLayer: CAGradientLayer = CAGradientLayer()
+    var dataEntries: [PointEntry]? {
+        didSet {
+        
+            self.lineLayer = LineLayer(dataEntries: dataEntries!)
+            self.setNeedsLayout()
+        }
+    }
     
     /// Contains dataLayer and gradientLayer
     private let mainLayer: CALayer = CALayer()
@@ -81,11 +156,8 @@ class LineChart: UIView {
     }
     
     private func setupView() {
-        mainLayer.addSublayer(dataLayer)
         scrollView.layer.addSublayer(mainLayer)
         
-        gradientLayer.colors = [#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7).cgColor, UIColor.clear.cgColor]
-        scrollView.layer.addSublayer(gradientLayer)
         self.layer.addSublayer(gridLayer)
         self.addSubview(scrollView)
         self.backgroundColor = #colorLiteral(red: 0, green: 0.3529411765, blue: 0.6156862745, alpha: 1)
@@ -96,15 +168,22 @@ class LineChart: UIView {
         if let dataEntries = dataEntries {
             scrollView.contentSize = CGSize(width: CGFloat(dataEntries.count) * lineGap, height: self.frame.size.height)
             mainLayer.frame = CGRect(x: 0, y: 0, width: CGFloat(dataEntries.count) * lineGap, height: self.frame.size.height)
-            dataLayer.frame = CGRect(x: 0, y: topSpace, width: mainLayer.frame.width, height: mainLayer.frame.height - topSpace - bottomSpace)
-            gradientLayer.frame = dataLayer.frame
-            dataPoints = convertDataEntriesToPoints(entries: dataEntries)
+
             gridLayer.frame = CGRect(x: 0, y: topSpace, width: self.frame.width, height: mainLayer.frame.height - topSpace - bottomSpace)
             clean()
+            
+            if let dataLayer = lineLayer?.drawCurvedChart(height: mainLayer.frame.height - topSpace - bottomSpace) {
+                mainLayer.addSublayer(dataLayer)
+                
+            }
+            
+            
             drawHorizontalLines()
-            drawCurvedChart()
         
-            maskGradientLayer()
+            if let maskGradientLayer = lineLayer?.maskGradientLayer(height: mainLayer.frame.height - topSpace - bottomSpace) {
+                scrollView.layer.addSublayer(maskGradientLayer)
+                maskGradientLayer.frame = mainLayer.frame
+            }
             drawLables()
         }
     }
@@ -112,7 +191,7 @@ class LineChart: UIView {
     /**
      Convert an array of PointEntry to an array of CGPoint on dataLayer coordinate system
      */
-    private func convertDataEntriesToPoints(entries: [PointEntry]) -> [CGPoint] {
+    private func convertDataEntriesToPoints(entries: [PointEntry], dataLayer: CALayer) -> [CGPoint] {
         if let max = entries.max()?.value,
             let min = entries.min()?.value {
             
@@ -143,48 +222,6 @@ class LineChart: UIView {
             path.addLine(to: dataPoints[i])
         }
         return path
-    }
-    
-    /**
-     Draw a curved line connecting all points in dataPoints
-     */
-    private func drawCurvedChart() {
-        guard let dataPoints = dataPoints, dataPoints.count > 0 else {
-            return
-        }
-        if let path = CurveAlgorithm.shared.createCurvedPath(dataPoints) {
-            let lineLayer = CAShapeLayer()
-            lineLayer.path = path.cgPath
-            lineLayer.strokeColor = UIColor.white.cgColor
-            lineLayer.fillColor = UIColor.clear.cgColor
-            dataLayer.addSublayer(lineLayer)
-        }
-    }
-    
-    /**
-     Create a gradient layer below the line that connecting all dataPoints
-     */
-    private func maskGradientLayer() {
-        if let dataPoints = dataPoints,
-            dataPoints.count > 0 {
-            
-            let path = UIBezierPath()
-            path.move(to: CGPoint(x: dataPoints[0].x, y: dataLayer.frame.height))
-            path.addLine(to: dataPoints[0])
-            if let curvedPath = CurveAlgorithm.shared.createCurvedPath(dataPoints) {
-                path.append(curvedPath)
-            }
-            path.addLine(to: CGPoint(x: dataPoints[dataPoints.count-1].x, y: dataLayer.frame.height))
-            path.addLine(to: CGPoint(x: dataPoints[0].x, y: dataLayer.frame.height))
-            
-            let maskLayer = CAShapeLayer()
-            maskLayer.path = path.cgPath
-            maskLayer.fillColor = UIColor.white.cgColor
-            maskLayer.strokeColor = UIColor.clear.cgColor
-            maskLayer.lineWidth = 0.0
-            
-            gradientLayer.mask = maskLayer
-        }
     }
     
     /**
@@ -269,7 +306,6 @@ class LineChart: UIView {
                 $0.removeFromSuperlayer()
             }
         })
-        dataLayer.sublayers?.forEach({$0.removeFromSuperlayer()})
         gridLayer.sublayers?.forEach({$0.removeFromSuperlayer()})
     }
 }
