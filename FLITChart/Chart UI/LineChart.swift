@@ -118,11 +118,13 @@ class LineChart: UIView {
     /// Dot outer Radius
     var outerRadius: CGFloat = 12
     
-    var lineLayer: LineLayer?
+    var lineLayer1: LineLayer?
 
+    var lineLayer2: LineLayer?
     
-    func addDataEntry(_ entry: [PointEntry]) {
-        self.lineLayer = LineLayer(dataEntries: entry)
+    func addDataEntry(_ entry1: [PointEntry], entry2: [PointEntry]) {
+        self.lineLayer1 = LineLayer(dataEntries: entry1)
+        self.lineLayer2 = LineLayer(dataEntries: entry2)
         self.setNeedsLayout()
     }
     
@@ -163,26 +165,34 @@ class LineChart: UIView {
     
     override func layoutSubviews() {
         scrollView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
-        if let dataEntries = lineLayer?.dataEntries {
+        if let dataEntries = lineLayer1?.dataEntries {
             scrollView.contentSize = CGSize(width: CGFloat(dataEntries.count) * lineGap, height: self.frame.size.height)
             mainLayer.frame = CGRect(x: 0, y: 0, width: CGFloat(dataEntries.count) * lineGap, height: self.frame.size.height)
 
             gridLayer.frame = CGRect(x: 0, y: topSpace, width: self.frame.width, height: mainLayer.frame.height - topSpace - bottomSpace)
             clean()
             
-            if let dataLayer = lineLayer?.drawCurvedChart(height: mainLayer.frame.height - topSpace - bottomSpace) {
+            if let dataLayer = lineLayer1?.drawCurvedChart(height: mainLayer.frame.height - topSpace - bottomSpace) {
                 mainLayer.addSublayer(dataLayer)
-                
             }
-            
             
             drawHorizontalLines()
         
-            if let maskGradientLayer = lineLayer?.maskGradientLayer(height: mainLayer.frame.height - topSpace - bottomSpace) {
+            if let maskGradientLayer = lineLayer1?.maskGradientLayer(height: mainLayer.frame.height - topSpace - bottomSpace) {
                 scrollView.layer.addSublayer(maskGradientLayer)
                 maskGradientLayer.frame = mainLayer.frame
             }
             drawLables()
+        }
+        
+        if let dataEntries = lineLayer2?.dataEntries {
+            if let dataLayer = lineLayer2?.drawCurvedChart(height: mainLayer.frame.height - topSpace - bottomSpace) {
+                mainLayer.addSublayer(dataLayer)
+            }
+            if let maskGradientLayer = lineLayer2?.maskGradientLayer(height: mainLayer.frame.height - topSpace - bottomSpace) {
+                scrollView.layer.addSublayer(maskGradientLayer)
+                maskGradientLayer.frame = mainLayer.frame
+            }
         }
     }
     
@@ -226,7 +236,7 @@ class LineChart: UIView {
      Create titles at the bottom for all entries showed in the chart
      */
     private func drawLables() {
-        if let dataEntries = lineLayer?.dataEntries,
+        if let dataEntries = lineLayer1?.dataEntries,
             dataEntries.count > 0 {
             for i in 0..<dataEntries.count {
                 let textLayer = CATextLayer()
@@ -247,7 +257,7 @@ class LineChart: UIView {
      Create horizontal lines (grid lines) and show the value of each line
      */
     private func drawHorizontalLines() {
-        guard let dataEntries = lineLayer?.dataEntries else {
+        guard let dataEntries = lineLayer1?.dataEntries else {
             return
         }
         
@@ -278,8 +288,8 @@ class LineChart: UIView {
                 
                 var minMaxGap:CGFloat = 0
                 var lineValue:Int = 0
-                if let max = self.lineLayer?.dataEntries.max()?.value,
-                   let min = self.lineLayer?.dataEntries.min()?.value {
+                if let max = self.lineLayer1?.dataEntries.max()?.value,
+                   let min = self.lineLayer1?.dataEntries.min()?.value {
                     minMaxGap = CGFloat(max - min) * topHorizontalLine
                     lineValue = Int((1-value) * minMaxGap) + Int(min)
                 }

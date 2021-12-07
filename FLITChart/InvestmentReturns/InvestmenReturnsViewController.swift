@@ -13,9 +13,10 @@ public class InvestmenReturnsViewController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        let dataEntries = generateRandomEntries()
+        let dataEntries1 = generateRandomEntries()
+        let dataEntries2 = generateRandomEntries()
         
-        chartView.addDataEntry(dataEntries)
+        chartView.addDataEntry(dataEntries1, entry2: dataEntries2)
     }
 
 
