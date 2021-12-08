@@ -34,4 +34,7 @@ public struct InvestmentReturnsViewModel {
     public let monthlyContributionText = "Monthly Contribution"
     
     public let returnsWorstCase: [PointEntry]
+    public let returnsAverageBottomCase: [PointEntry]
+    public let returnsAverageTopCase: [PointEntry]
+    public let returnsBestCase: [PointEntry]
 }

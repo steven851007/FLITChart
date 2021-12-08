@@ -26,7 +26,7 @@ public struct InvestmentReturnsOverTime {
     public let returnsWorstCase: [NSDecimalNumber]
     public let returnsAverageBottomCase: [NSDecimalNumber]
     public let returnsAverageTopCase: [NSDecimalNumber]
-    public let retunrsBestCase: [NSDecimalNumber]
+    public let returnsBestCase: [NSDecimalNumber]
 }
 
 public struct InvestmentReturnsModel {

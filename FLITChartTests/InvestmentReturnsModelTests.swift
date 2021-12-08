@@ -18,7 +18,7 @@ class InvestmentReturnsModelTests: XCTestCase {
         XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.returnsWorstCase, [initialInvestment])
         XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.returnsAverageBottomCase, [initialInvestment])
         XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.returnsAverageTopCase, [initialInvestment])
-        XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.retunrsBestCase, [initialInvestment])
+        XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.returnsBestCase, [initialInvestment])
     }
     
     func test_wealthCalculator_returnsInitialInvestmentForOneMonth() {
@@ -29,7 +29,7 @@ class InvestmentReturnsModelTests: XCTestCase {
         XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.returnsWorstCase, [initialInvestment])
         XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.returnsAverageBottomCase, [initialInvestment])
         XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.returnsAverageTopCase, [initialInvestment])
-        XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.retunrsBestCase, [initialInvestment])
+        XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.returnsBestCase, [initialInvestment])
     }
 
     func test_wealthCalculator_calculatesCorrectReturnsForTwoMonths() {
@@ -40,7 +40,7 @@ class InvestmentReturnsModelTests: XCTestCase {
         XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.returnsWorstCase, [initialInvestment, NSDecimalNumber(string: "10517.742500619853824")])
         XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.returnsAverageBottomCase, [initialInvestment, NSDecimalNumber(string: "10543.128765598298112")])
         XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.returnsAverageTopCase, [initialInvestment, NSDecimalNumber(string: "10569.914589154562048")])
-        XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.retunrsBestCase, [initialInvestment, NSDecimalNumber(string: "10575.915342905823232")])
+        XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.returnsBestCase, [initialInvestment, NSDecimalNumber(string: "10575.915342905823232")])
     }
 
     func test_wealthCalculator_calculatesCorrectReturnsForTenMonths() {
@@ -65,7 +65,7 @@ class InvestmentReturnsModelTests: XCTestCase {
         
         XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.returnsAverageBottomCase.last, NSDecimalNumber(string: "14973.3411333898221269606572187074476376"))
         XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.returnsAverageTopCase.last, NSDecimalNumber(string: "15275.0393025000881417633928250980507972"))
-        XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.retunrsBestCase.last, NSDecimalNumber(string: "15343.453022656763791030527302041959774"))
+        XCTAssertEqual(investmentAttributes.investmentReturnsOverTime.returnsBestCase.last, NSDecimalNumber(string: "15343.453022656763791030527302041959774"))
     }
     
     private func createSUT(initialInvestment: NSDecimalNumber, lengthInMonths: UInt) -> InvestmentReturnsModel {

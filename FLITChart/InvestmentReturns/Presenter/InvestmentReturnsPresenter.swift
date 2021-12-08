@@ -21,9 +21,19 @@ public final class InvestmentReturnsPresenter {
 
         let initialInvestmentValue = currencyFormatter.string(from: investmentReturnsModel.initialInvestment)!
         let monthlyContributionValue = currencyFormatter.string(from: investmentReturnsModel.monthlyContribution)!
-        let worstCaseEntires = generateEntries(investmentReturnsModel.investmentReturnsOverTime.returnsWorstCase, startDate: startDate)
         
-        return InvestmentReturnsViewModel(initialInvestmentValue: initialInvestmentValue, monthlyContributionValue: monthlyContributionValue, returnsWorstCase: worstCaseEntires)
+        let worstCaseEntires = generateEntries(investmentReturnsModel.investmentReturnsOverTime.returnsWorstCase, startDate: startDate)
+        let returnsAverageBottomCase = generateEntries(investmentReturnsModel.investmentReturnsOverTime.returnsAverageBottomCase, startDate: startDate)
+        let returnsAverageTopCase = generateEntries(investmentReturnsModel.investmentReturnsOverTime.returnsAverageTopCase, startDate: startDate)
+        let returnsBestCase = generateEntries(investmentReturnsModel.investmentReturnsOverTime.returnsBestCase, startDate: startDate)
+        
+        return InvestmentReturnsViewModel(
+            initialInvestmentValue: initialInvestmentValue,
+            monthlyContributionValue: monthlyContributionValue,
+            returnsWorstCase: worstCaseEntires,
+            returnsAverageBottomCase: returnsAverageBottomCase,
+            returnsAverageTopCase: returnsAverageTopCase,
+            returnsBestCase: returnsBestCase)
     }
     
     private static var dateFormatter: DateFormatter = {

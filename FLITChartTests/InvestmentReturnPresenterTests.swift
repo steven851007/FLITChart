@@ -27,8 +27,11 @@ class InvestmentReturnPresenterTests: XCTestCase {
 
         let viewModel = InvestmentReturnsPresenter.map(investmentReturnsModel, startDate: year2020)
         
-        let returnsWorstCase = [PointEntry(value: 10000, label: "2020")]
-        XCTAssertEqual(viewModel.returnsWorstCase, returnsWorstCase)
+        let expectedReturns = [PointEntry(value: 10000, label: "2020")]
+        XCTAssertEqual(viewModel.returnsWorstCase, expectedReturns)
+        XCTAssertEqual(viewModel.returnsAverageBottomCase, expectedReturns)
+        XCTAssertEqual(viewModel.returnsAverageTopCase, expectedReturns)
+        XCTAssertEqual(viewModel.returnsBestCase, expectedReturns)
     }
     
     func test_map_investmentReturnsIsCorrectForOneMonth() {
@@ -36,24 +39,54 @@ class InvestmentReturnPresenterTests: XCTestCase {
 
         let viewModel = InvestmentReturnsPresenter.map(investmentReturnsModel, startDate: year2020)
         
-        let returnsWorstCase = [PointEntry(value: 10000, label: "2020")]
-        XCTAssertEqual(viewModel.returnsWorstCase, returnsWorstCase)
+        let expectedReturns = [PointEntry(value: 10000, label: "2020")]
+        XCTAssertEqual(viewModel.returnsWorstCase, expectedReturns)
+        XCTAssertEqual(viewModel.returnsAverageBottomCase, expectedReturns)
+        XCTAssertEqual(viewModel.returnsAverageTopCase, expectedReturns)
+        XCTAssertEqual(viewModel.returnsBestCase, expectedReturns)
     }
     
     func test_map_createsViewModelWithCorrectInvestmentReturnsForWorstCaseForTwentyFiveYears() {
         let investmentReturnsModel = defaultInvestmentReturnsModel(12*25)
         
-        
         let viewModel = InvestmentReturnsPresenter.map(investmentReturnsModel, startDate: year2020)
         
-        let returnsWorstCase = [
+        let expectedReturnsWorstCase = [
             PointEntry(value: 10000, label: "2020"),
             PointEntry(value: 42748, label: "2025"),
             PointEntry(value: 79170, label: "2030"),
             PointEntry(value: 119681, label: "2035"),
             PointEntry(value: 164737, label: "2040")
         ]
-        XCTAssertEqual(viewModel.returnsWorstCase, returnsWorstCase)
+        
+        let expectedReturnsAverageBottomCase = [
+            PointEntry(value: 10000, label: "2020"),
+            PointEntry(value: 47102, label: "2025"),
+            PointEntry(value: 95135, label: "2030"),
+            PointEntry(value: 157319, label: "2035"),
+            PointEntry(value: 237824, label: "2040")
+        ]
+        
+        let expectedReturnsAverageTopCase = [
+            PointEntry(value: 10000, label: "2020"),
+            PointEntry(value: 52304, label: "2025"),
+            PointEntry(value: 116561, label: "2030"),
+            PointEntry(value: 214167, label: "2035"),
+            PointEntry(value: 362425, label: "2040")
+        ]
+        
+        let expectedReturnsBestCase = [
+            PointEntry(value: 10000, label: "2020"),
+            PointEntry(value: 53563, label: "2025"),
+            PointEntry(value: 122143, label: "2030"),
+            PointEntry(value: 230103, label: "2035"),
+            PointEntry(value: 400057, label: "2040")
+        ]
+        
+        XCTAssertEqual(viewModel.returnsWorstCase, expectedReturnsWorstCase)
+        XCTAssertEqual(viewModel.returnsAverageBottomCase, expectedReturnsAverageBottomCase)
+        XCTAssertEqual(viewModel.returnsAverageTopCase, expectedReturnsAverageTopCase)
+        XCTAssertEqual(viewModel.returnsBestCase, expectedReturnsBestCase)
     }
     
     private func year2020() -> Date {

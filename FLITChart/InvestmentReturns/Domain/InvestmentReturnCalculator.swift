@@ -17,7 +17,7 @@ final class InvestmentReturnCalculator {
                 returnsWorstCase: [initialInvestment],
                 returnsAverageBottomCase: [initialInvestment],
                 returnsAverageTopCase: [initialInvestment],
-                retunrsBestCase: [initialInvestment])
+                returnsBestCase: [initialInvestment])
         }
         
         let returnsWorstCase = self.calculateInvestmentOverTime(initialInvestment: initialInvestment, monthlyContribution: monthlyContribution, annualReturn: annualReturn.worstCase, investmentLength: lengthOfInvestmentInMonths)
@@ -32,7 +32,7 @@ final class InvestmentReturnCalculator {
             returnsWorstCase: returnsWorstCase,
             returnsAverageBottomCase: returnsAverageBottomCase,
             returnsAverageTopCase: returnsAverageTopCase,
-            retunrsBestCase: returnsBestCase)
+            returnsBestCase: returnsBestCase)
         
     }
     
