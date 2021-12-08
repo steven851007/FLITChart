@@ -13,10 +13,15 @@ public class InvestmenReturnsViewController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        let dataEntries1 = generateRandomEntries()
-        let dataEntries2 = generateRandomEntries()
+        let annualReturns = AnnualReturnPercentages(worstCase: 2.15, averageWorstCase: 5.3, averageBestCase: 8.72, bestCase: 9.5)
+        let model = InvestmentReturnsModel(initialInvestment: 10000, monthlyContribution: 500, annualReturns: annualReturns, lengthOfInvestmentInMonths: 12*25)
         
-        chartView.addDataEntry(dataEntries1, entry2: dataEntries2)
+        let viewModel = InvestmentReturnsPresenter.map(model)
+        display(viewModel)
+    }
+    
+    public func display(_ investmentReturns: InvestmentReturnsViewModel) {
+        chartView.addDataEntry(investmentReturns.returnsBestCase, entry2: investmentReturns.returnsWorstCase)
     }
 
 

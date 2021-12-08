@@ -19,8 +19,8 @@ struct LineLayer {
         self.dataEntries = dataEntries
     }
     
-    func drawCurvedChart(height: CGFloat) -> CALayer? {
-        let dataPoints = convertDataEntriesToPoints(entries: dataEntries, height: height)
+    func drawCurvedChart(height: CGFloat, minMax: (Int,Int)) -> CALayer? {
+        let dataPoints = convertDataEntriesToPoints(entries: dataEntries, height: height, minMax: minMax)
         guard dataPoints.count > 0 else {
             return nil
         }
@@ -36,28 +36,27 @@ struct LineLayer {
         return nil
     }
     
-    private func convertDataEntriesToPoints(entries: [PointEntry], height: CGFloat) -> [CGPoint] {
-        if let max = entries.max()?.value,
-            let min = entries.min()?.value {
-            
-            var result: [CGPoint] = []
-            let minMaxRange: CGFloat = CGFloat(max - min) * topHorizontalLine
-            
-            for i in 0..<entries.count {
-                let height = height * (1 - ((CGFloat(entries[i].value) - CGFloat(min)) / minMaxRange))
-                let point = CGPoint(x: CGFloat(i)*lineGap + 40, y: height)
-                result.append(point)
-            }
-            return result
+    private func convertDataEntriesToPoints(entries: [PointEntry], height: CGFloat, minMax: (Int,Int)) -> [CGPoint] {
+        let max = minMax.1
+        let min = minMax.0
+        
+        var result: [CGPoint] = []
+        let minMaxRange: CGFloat = CGFloat(max - min) * topHorizontalLine
+        
+        for i in 0..<entries.count {
+            let height = height * (1 - ((CGFloat(entries[i].value) - CGFloat(min)) / minMaxRange))
+            let point = CGPoint(x: CGFloat(i)*lineGap + 40, y: height)
+            result.append(point)
         }
-        return []
+        return result
+        
     }
     
     /**
      Create a gradient layer below the line that connecting all dataPoints
      */
-    func maskGradientLayer(height: CGFloat) -> CAGradientLayer? {
-        let dataPoints = convertDataEntriesToPoints(entries: dataEntries, height: height)
+    func maskGradientLayer(height: CGFloat, minMax: (Int,Int)) -> CAGradientLayer? {
+        let dataPoints = convertDataEntriesToPoints(entries: dataEntries, height: height, minMax: minMax)
         if dataPoints.count > 0 {
 
             let path = UIBezierPath()
@@ -151,6 +150,13 @@ class LineChart: UIView {
     
     override func layoutSubviews() {
         scrollView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
+        
+        let allEntries = (lineLayer1?.dataEntries ?? []) + (lineLayer2?.dataEntries ?? [])
+        guard let max = allEntries.max()?.value,
+            let min = allEntries.min()?.value else {
+                return
+        }
+        
         if let dataEntries = lineLayer1?.dataEntries {
             scrollView.contentSize = CGSize(width: CGFloat(dataEntries.count) * lineGap, height: self.frame.size.height)
             mainLayer.frame = CGRect(x: 0, y: 0, width: CGFloat(dataEntries.count) * lineGap, height: self.frame.size.height)
@@ -158,13 +164,13 @@ class LineChart: UIView {
             gridLayer.frame = CGRect(x: 0, y: topSpace, width: self.frame.width, height: mainLayer.frame.height - topSpace - bottomSpace)
             clean()
             
-            if let dataLayer = lineLayer1?.drawCurvedChart(height: mainLayer.frame.height - topSpace - bottomSpace) {
+            if let dataLayer = lineLayer1?.drawCurvedChart(height: mainLayer.frame.height - topSpace - bottomSpace, minMax: (min, max)) {
                 mainLayer.addSublayer(dataLayer)
             }
             
             drawHorizontalLines()
         
-            if let maskGradientLayer = lineLayer1?.maskGradientLayer(height: mainLayer.frame.height - topSpace - bottomSpace) {
+            if let maskGradientLayer = lineLayer1?.maskGradientLayer(height: mainLayer.frame.height - topSpace - bottomSpace, minMax: (min, max)) {
                 scrollView.layer.addSublayer(maskGradientLayer)
                 maskGradientLayer.frame = mainLayer.frame
             }
@@ -172,50 +178,14 @@ class LineChart: UIView {
         }
         
         if let dataEntries = lineLayer2?.dataEntries {
-            if let dataLayer = lineLayer2?.drawCurvedChart(height: mainLayer.frame.height - topSpace - bottomSpace) {
+            if let dataLayer = lineLayer2?.drawCurvedChart(height: mainLayer.frame.height - topSpace - bottomSpace, minMax: (min, max)) {
                 mainLayer.addSublayer(dataLayer)
             }
-            if let maskGradientLayer = lineLayer2?.maskGradientLayer(height: mainLayer.frame.height - topSpace - bottomSpace) {
+            if let maskGradientLayer = lineLayer2?.maskGradientLayer(height: mainLayer.frame.height - topSpace - bottomSpace, minMax: (min, max)) {
                 scrollView.layer.addSublayer(maskGradientLayer)
                 maskGradientLayer.frame = mainLayer.frame
             }
         }
-    }
-    
-    /**
-     Convert an array of PointEntry to an array of CGPoint on dataLayer coordinate system
-     */
-    private func convertDataEntriesToPoints(entries: [PointEntry], dataLayer: CALayer) -> [CGPoint] {
-        if let max = entries.max()?.value,
-            let min = entries.min()?.value {
-            
-            var result: [CGPoint] = []
-            let minMaxRange: CGFloat = CGFloat(max - min) * topHorizontalLine
-            
-            for i in 0..<entries.count {
-                let height = dataLayer.frame.height * (1 - ((CGFloat(entries[i].value) - CGFloat(min)) / minMaxRange))
-                let point = CGPoint(x: CGFloat(i)*lineGap + 40, y: height)
-                result.append(point)
-            }
-            return result
-        }
-        return []
-    }
-
-    /**
-     Create a zigzag bezier path that connects all points in dataPoints
-     */
-    private func createPath() -> UIBezierPath? {
-        guard let dataPoints = dataPoints, dataPoints.count > 0 else {
-            return nil
-        }
-        let path = UIBezierPath()
-        path.move(to: dataPoints[0])
-        
-        for i in 1..<dataPoints.count {
-            path.addLine(to: dataPoints[i])
-        }
-        return path
     }
     
     /**
@@ -243,9 +213,12 @@ class LineChart: UIView {
      Create horizontal lines (grid lines) and show the value of each line
      */
     private func drawHorizontalLines() {
-        guard let dataEntries = lineLayer1?.dataEntries else {
-            return
-        }
+        guard let dataEntries1 = lineLayer1?.dataEntries,
+              let dataEntries2 = lineLayer2?.dataEntries else {
+                  return
+              }
+        let dataEntries = dataEntries1 + dataEntries2
+        
         
         var gridValues: [CGFloat]? = nil
         if dataEntries.count < 4 && dataEntries.count > 0 {
