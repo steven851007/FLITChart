@@ -7,20 +7,6 @@
 
 import UIKit
 
-struct PointEntry {
-    let value: Int
-    let label: String
-}
-
-extension PointEntry: Comparable {
-    static func <(lhs: PointEntry, rhs: PointEntry) -> Bool {
-        return lhs.value < rhs.value
-    }
-    static func ==(lhs: PointEntry, rhs: PointEntry) -> Bool {
-        return lhs.value == rhs.value
-    }
-}
-
 struct LineLayer {
     
     let topHorizontalLine: CGFloat = 110.0 / 100.0
