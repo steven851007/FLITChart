@@ -47,7 +47,7 @@ class InvestmentReturnPresenterTests: XCTestCase {
     }
     
     func test_map_createsViewModelWithCorrectInvestmentReturnsForWorstCaseForTwentyFiveYears() {
-        let investmentReturnsModel = defaultInvestmentReturnsModel(12*25)
+        let investmentReturnsModel = defaultInvestmentReturnsModel(12*26)
         
         let viewModel = InvestmentReturnsPresenter.map(investmentReturnsModel, startDate: year2020)
         
@@ -56,7 +56,8 @@ class InvestmentReturnPresenterTests: XCTestCase {
             PointEntry(value: 42748, label: "2025"),
             PointEntry(value: 79170, label: "2030"),
             PointEntry(value: 119681, label: "2035"),
-            PointEntry(value: 164737, label: "2040")
+            PointEntry(value: 164737, label: "2040"),
+            PointEntry(value: 214850, label: "2045")
         ]
         
         let expectedReturnsAverageBottomCase = [
@@ -64,7 +65,8 @@ class InvestmentReturnPresenterTests: XCTestCase {
             PointEntry(value: 47102, label: "2025"),
             PointEntry(value: 95135, label: "2030"),
             PointEntry(value: 157319, label: "2035"),
-            PointEntry(value: 237824, label: "2040")
+            PointEntry(value: 237824, label: "2040"),
+            PointEntry(value: 342047, label: "2045")
         ]
         
         let expectedReturnsAverageTopCase = [
@@ -72,7 +74,8 @@ class InvestmentReturnPresenterTests: XCTestCase {
             PointEntry(value: 52304, label: "2025"),
             PointEntry(value: 116561, label: "2030"),
             PointEntry(value: 214167, label: "2035"),
-            PointEntry(value: 362425, label: "2040")
+            PointEntry(value: 362425, label: "2040"),
+            PointEntry(value: 587625, label: "2045")
         ]
         
         let expectedReturnsBestCase = [
@@ -80,7 +83,8 @@ class InvestmentReturnPresenterTests: XCTestCase {
             PointEntry(value: 53563, label: "2025"),
             PointEntry(value: 122143, label: "2030"),
             PointEntry(value: 230103, label: "2035"),
-            PointEntry(value: 400057, label: "2040")
+            PointEntry(value: 400057, label: "2040"),
+            PointEntry(value: 667607, label: "2045")
         ]
         
         XCTAssertEqual(viewModel.returnsWorstCase, expectedReturnsWorstCase)
