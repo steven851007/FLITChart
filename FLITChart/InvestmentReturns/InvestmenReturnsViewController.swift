@@ -21,7 +21,7 @@ public class InvestmenReturnsViewController: UIViewController {
     }
     
     public func display(_ investmentReturns: InvestmentReturnsViewModel) {
-        chartView.addDataEntry(investmentReturns.returnsBestCase, entry2: investmentReturns.returnsWorstCase)
+        chartView.addDataEntry(investmentReturns.returnsWorstCase, entry2: investmentReturns.returnsBestCase)
     }
 
 
