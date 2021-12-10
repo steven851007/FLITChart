@@ -14,12 +14,12 @@ class InvestmentReturnPresenterTests: XCTestCase {
         let investmentReturnsModel = defaultInvestmentReturnsModel()
 
         let viewModel = InvestmentReturnsPresenter.map(investmentReturnsModel, startDate: year2020)
-
+        
         XCTAssertEqual(viewModel.initialInvestmentText, "Initial Investment")
-        XCTAssertEqual(viewModel.initialInvestmentValue, "$10,000.00")
+        XCTAssertEqual(viewModel.initialInvestmentValue, "10,000")
         
         XCTAssertEqual(viewModel.monthlyContributionText, "Monthly Contribution")
-        XCTAssertEqual(viewModel.monthlyContributionValue, "$500.00")
+        XCTAssertEqual(viewModel.monthlyContributionValue, "500")
     }
     
     func test_map_investmentReturnsIsCorrectForZeroMonth() {

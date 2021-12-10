@@ -128,6 +128,8 @@ class LineChart: UIView {
     /// An array of CGPoint on dataLayer coordinate system that the main line will go through. These points will be calculated from dataEntries array
     private var dataPoints: [CGPoint]?
 
+    private var lineLayers = [CALayer]()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -169,6 +171,7 @@ class LineChart: UIView {
             
             if let dataLayer = lineLayer1?.drawCurvedChart(height: mainLayer.frame.height - topSpace - bottomSpace, minMax: (min, max)) {
                 mainLayer.addSublayer(dataLayer)
+                lineLayers.append(dataLayer)
             }
             
             drawHorizontalLines()
@@ -183,6 +186,7 @@ class LineChart: UIView {
         if let lineLayer2 = lineLayer2 {
             if let dataLayer = lineLayer2.drawCurvedChart(height: mainLayer.frame.height - topSpace - bottomSpace, minMax: (min, max)) {
                 mainLayer.addSublayer(dataLayer)
+                lineLayers.append(dataLayer)
             }
 //            if let maskGradientLayer = lineLayer2.maskGradientLayer(height: mainLayer.frame.height - topSpace - bottomSpace, minMax: (min, max)) {
 //                scrollView.layer.addSublayer(maskGradientLayer)
@@ -193,6 +197,7 @@ class LineChart: UIView {
         if let lineLayer3 = lineLayer3 {
             if let dataLayer = lineLayer3.drawCurvedChart(height: mainLayer.frame.height - topSpace - bottomSpace, minMax: (min, max)) {
                 mainLayer.addSublayer(dataLayer)
+                lineLayers.append(dataLayer)
             }
 //            if let maskGradientLayer = lineLayer3.maskGradientLayer(height: mainLayer.frame.height - topSpace - bottomSpace, minMax: (min, max)) {
 //                scrollView.layer.addSublayer(maskGradientLayer)
@@ -203,6 +208,7 @@ class LineChart: UIView {
         if let lineLayer4 = lineLayer4 {
             if let dataLayer = lineLayer4.drawCurvedChart(height: mainLayer.frame.height - topSpace - bottomSpace, minMax: (min, max)) {
                 mainLayer.addSublayer(dataLayer)
+                lineLayers.append(dataLayer)
             }
 //            if let maskGradientLayer = lineLayer4.maskGradientLayer(height: mainLayer.frame.height - topSpace - bottomSpace, minMax: (min, max)) {
 //                scrollView.layer.addSublayer(maskGradientLayer)
@@ -292,7 +298,10 @@ class LineChart: UIView {
         }
     }
     
-    private func clean() {
+    func clean() {
+        for layer in lineLayers {
+            layer.removeFromSuperlayer()
+        }
         mainLayer.sublayers?.forEach({
             if $0 is CATextLayer {
                 $0.removeFromSuperlayer()

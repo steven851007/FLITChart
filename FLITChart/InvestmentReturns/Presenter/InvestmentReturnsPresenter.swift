@@ -7,20 +7,26 @@
 
 import Foundation
 
-public final class InvestmentReturnsPresenter {
-    
-    private static var currencyFormatter: NumberFormatter = {
+extension NumberFormatter {
+    static var chartCurrencyFormatter: NumberFormatter = {
         let currencyFormatter = NumberFormatter()
         currencyFormatter.usesGroupingSeparator = true
+        currencyFormatter.minimumFractionDigits = 0
+        currencyFormatter.maximumFractionDigits = 0
+        currencyFormatter.alwaysShowsDecimalSeparator = false
         currencyFormatter.numberStyle = .currency
+        currencyFormatter.currencySymbol = ""
         currencyFormatter.locale = Locale(identifier: "en_US")
         return currencyFormatter
     }()
+}
+
+public final class InvestmentReturnsPresenter {
     
     public class func map(_ investmentReturnsModel: InvestmentReturnsModel, startDate: () -> Date = Date.init) -> InvestmentReturnsViewModel {
 
-        let initialInvestmentValue = currencyFormatter.string(from: investmentReturnsModel.initialInvestment)!
-        let monthlyContributionValue = currencyFormatter.string(from: investmentReturnsModel.monthlyContribution)!
+        let initialInvestmentValue = NumberFormatter.chartCurrencyFormatter.string(from: investmentReturnsModel.initialInvestment)!
+        let monthlyContributionValue = NumberFormatter.chartCurrencyFormatter.string(from: investmentReturnsModel.monthlyContribution)!
         
         let worstCaseEntires = generateEntries(investmentReturnsModel.investmentReturnsOverTime.returnsWorstCase, startDate: startDate)
         let returnsAverageBottomCase = generateEntries(investmentReturnsModel.investmentReturnsOverTime.returnsAverageBottomCase, startDate: startDate)

@@ -35,6 +35,10 @@
                                                         <rect key="frame" x="0.0" y="35.5" width="177" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="editingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="vQp-7E-iaD"/>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="GEu-Mr-VMW"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
@@ -75,6 +79,8 @@
                     <navigationItem key="navigationItem" id="eak-99-OQu"/>
                     <connections>
                         <outlet property="chartView" destination="JfC-rK-rIl" id="5Db-5h-ERw"/>
+                        <outlet property="initialInvestmentTextField" destination="il6-Xv-5qi" id="H85-aL-ht7"/>
+                        <outlet property="monthlyContributionTextField" destination="Qen-MB-TX7" id="Y05-uV-voK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
