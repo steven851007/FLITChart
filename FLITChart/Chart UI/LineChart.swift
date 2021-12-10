@@ -28,7 +28,7 @@ struct LineLayer {
             let dataLayer: CALayer = CALayer()
             let lineLayer = CAShapeLayer()
             lineLayer.path = path.cgPath
-            lineLayer.strokeColor = UIColor.white.cgColor
+            lineLayer.strokeColor = UIColor.systemBlue.cgColor
             lineLayer.fillColor = UIColor.clear.cgColor
             dataLayer.addSublayer(lineLayer)
             return dataLayer
@@ -150,7 +150,7 @@ class LineChart: UIView {
         
         self.layer.addSublayer(gridLayer)
         self.addSubview(scrollView)
-        self.backgroundColor = #colorLiteral(red: 0, green: 0.3529411765, blue: 0.6156862745, alpha: 1)
+        self.backgroundColor = .systemBackground
     }
     
     override func layoutSubviews() {
