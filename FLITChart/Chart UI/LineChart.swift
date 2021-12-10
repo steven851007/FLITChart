@@ -285,13 +285,13 @@ class LineChart: UIView {
                 }
                 
                 let textLayer = CATextLayer()
-                textLayer.frame = CGRect(x: 4, y: height, width: 50, height: 16)
+                textLayer.frame = CGRect(x: 4, y: height, width: 100, height: 16)
                 textLayer.foregroundColor = #colorLiteral(red: 0.5019607843, green: 0.6784313725, blue: 0.8078431373, alpha: 1).cgColor
                 textLayer.backgroundColor = UIColor.clear.cgColor
                 textLayer.contentsScale = UIScreen.main.scale
                 textLayer.font = CTFontCreateWithName(UIFont.systemFont(ofSize: 0).fontName as CFString, 0, nil)
                 textLayer.fontSize = 12
-                textLayer.string = "\(lineValue)"
+                textLayer.string = formatNumber(lineValue)
                 
                 gridLayer.addSublayer(textLayer)
             }
@@ -308,6 +308,46 @@ class LineChart: UIView {
             }
         })
         gridLayer.sublayers?.forEach({$0.removeFromSuperlayer()})
+    }
+    
+    func formatNumber(_ n: Int) -> String {
+        let num = abs(Double(n))
+        let sign = (n < 0) ? "-" : ""
+
+        switch num {
+        case 1_000_000_000...:
+            var formatted = num / 1_000_000_000
+            formatted = formatted.reduceScale(to: 1)
+            return "\(sign)\(formatted)B"
+
+        case 1_000_000...:
+            var formatted = num / 1_000_000
+            formatted = formatted.reduceScale(to: 1)
+            return "\(sign)\(formatted)M"
+
+        case 1_000...:
+            var formatted = num / 1_000
+            formatted = formatted.reduceScale(to: 1)
+            return "\(sign)\(formatted)K"
+
+        case 0...:
+            return "\(n)"
+
+        default:
+            return "\(sign)\(n)"
+        }
+    }
+
+}
+
+
+extension Double {
+    func reduceScale(to places: Int) -> Double {
+        let multiplier = pow(10, Double(places))
+        let newDecimal = multiplier * self // move the decimal right
+        let truncated = Double(Int(newDecimal)) // drop the fraction
+        let originalDecimal = truncated / multiplier // move the decimal back
+        return originalDecimal
     }
 }
 

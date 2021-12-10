@@ -50,7 +50,8 @@ public class InvestmenReturnsViewController: UIViewController {
         let viewModel = InvestmentReturnsPresenter.map(model)
         display(viewModel)
         
-        
+        initialInvestmentTextField.leftView = UIImageView(image: UIImage(named: "email.png"))
+        initialInvestmentTextField.leftViewMode = .always
     }
     func editingChanged() {
         guard let initialInvestmentText = initialInvestmentTextField.text,
