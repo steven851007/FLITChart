@@ -13,12 +13,10 @@ public class InvestmenReturnsViewController: UIViewController {
     @IBOutlet weak var chartView: LineChart!
     @IBOutlet weak var monthlyContributionTextField: UITextField!
     
+    var viewModel = InvestmentReturnsPresenter.map(InvestmentReturnsModel.initiallModel)
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
-        let annualReturns = AnnualReturnPercentages(worstCase: 2.15, averageWorstCase: 5.3, averageBestCase: 8.72, bestCase: 9.5)
-        let model = InvestmentReturnsModel(initialInvestment: 10000, monthlyContribution: 500, annualReturns: annualReturns, lengthOfInvestmentInMonths: 12*31)
-        
-        let viewModel = InvestmentReturnsPresenter.map(model)
         display(viewModel)
     }
     

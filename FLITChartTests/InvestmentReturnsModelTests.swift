@@ -10,6 +10,14 @@ import FLITChart
 
 class InvestmentReturnsModelTests: XCTestCase {
     
+    func test_initiallModel() {
+        let initialModel = InvestmentReturnsModel.initiallModel
+        
+        XCTAssertEqual(initialModel.initialInvestment, 10000)
+        XCTAssertEqual(initialModel.monthlyContribution, 500)
+        XCTAssertEqual(initialModel.lengthOfInvestmentInMonths, 12*31)
+    }
+    
     func test_wealthCalculator_returnsInitialInvestmentForZeroMonths() {
         let initialInvestment: NSDecimalNumber = 10000
         

@@ -43,4 +43,9 @@ public struct InvestmentReturnsModel {
         self.lengthOfInvestmentInMonths = lengthOfInvestmentInMonths
         self.investmentReturnsOverTime = InvestmentReturnCalculator.calcualteInvestmentOverTime(initialInvestment: initialInvestment, monthlyContribution: monthlyContribution, annualReturn: annualReturns, lengthOfInvestmentInMonths: lengthOfInvestmentInMonths)
     }
+    
+    public static var initiallModel: InvestmentReturnsModel {
+        let annualReturns = AnnualReturnPercentages(worstCase: 2.15, averageWorstCase: 5.3, averageBestCase: 8.72, bestCase: 9.5)
+        return InvestmentReturnsModel(initialInvestment: 10000, monthlyContribution: 500, annualReturns: annualReturns, lengthOfInvestmentInMonths: 12*31)
+    }
 }
