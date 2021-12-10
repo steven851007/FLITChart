@@ -20,8 +20,10 @@ class UITextFieldWithDollarSign: UITextField {
     }
     
     private func addDollarSign() {
-        let largeConfig = UIImage.SymbolConfiguration(scale: .large)
-        leftView = UIImageView(image: UIImage(systemName: "dollarsign.square", withConfiguration: largeConfig))
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        label.textColor = .tertiarySystemGroupedBackground
+        label.text = "  $"
+        leftView = label
         leftView?.tintColor = .tertiarySystemGroupedBackground
         leftViewMode = .always
     }
