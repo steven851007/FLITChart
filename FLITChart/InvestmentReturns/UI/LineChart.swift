@@ -14,7 +14,6 @@ struct LineLayer {
     
     let dataEntries: [PointEntry]
     
-    
     init(dataEntries: [PointEntry]) {
         self.dataEntries = dataEntries
     }
@@ -50,36 +49,6 @@ struct LineLayer {
         }
         return result
         
-    }
-    
-    /**
-     Create a gradient layer below the line that connecting all dataPoints
-     */
-    func maskGradientLayer(height: CGFloat, minMax: (Int,Int)) -> CAGradientLayer? {
-        let dataPoints = convertDataEntriesToPoints(entries: dataEntries, height: height, minMax: minMax)
-        if dataPoints.count > 0 {
-
-            let path = UIBezierPath()
-            path.move(to: CGPoint(x: dataPoints[0].x, y: height))
-            path.addLine(to: dataPoints[0])
-            if let curvedPath = CurveAlgorithm.shared.createCurvedPath(dataPoints) {
-                path.append(curvedPath)
-            }
-            path.addLine(to: CGPoint(x: dataPoints[dataPoints.count-1].x, y: height))
-            path.addLine(to: CGPoint(x: dataPoints[0].x, y: height))
-
-            let maskLayer = CAShapeLayer()
-            maskLayer.path = path.cgPath
-            maskLayer.fillColor = UIColor.white.cgColor
-            maskLayer.strokeColor = UIColor.clear.cgColor
-            maskLayer.lineWidth = 0.0
-
-            let gradientLayer: CAGradientLayer = CAGradientLayer()
-            gradientLayer.colors = [#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7).cgColor, UIColor.clear.cgColor]
-            gradientLayer.mask = maskLayer
-            return gradientLayer
-        }
-        return nil
     }
 }
 
@@ -175,11 +144,6 @@ class LineChart: UIView {
             }
             
             drawHorizontalLines()
-        
-//            if let maskGradientLayer = lineLayer1?.maskGradientLayer(height: mainLayer.frame.height - topSpace - bottomSpace, minMax: (min, max)) {
-//                scrollView.layer.addSublayer(maskGradientLayer)
-//                maskGradientLayer.frame = mainLayer.frame
-//            }
             drawLables()
         }
         
@@ -188,10 +152,6 @@ class LineChart: UIView {
                 mainLayer.addSublayer(dataLayer)
                 lineLayers.append(dataLayer)
             }
-//            if let maskGradientLayer = lineLayer2.maskGradientLayer(height: mainLayer.frame.height - topSpace - bottomSpace, minMax: (min, max)) {
-//                scrollView.layer.addSublayer(maskGradientLayer)
-//                maskGradientLayer.frame = mainLayer.frame
-//            }
         }
         
         if let lineLayer3 = lineLayer3 {
@@ -199,10 +159,6 @@ class LineChart: UIView {
                 mainLayer.addSublayer(dataLayer)
                 lineLayers.append(dataLayer)
             }
-//            if let maskGradientLayer = lineLayer3.maskGradientLayer(height: mainLayer.frame.height - topSpace - bottomSpace, minMax: (min, max)) {
-//                scrollView.layer.addSublayer(maskGradientLayer)
-//                maskGradientLayer.frame = mainLayer.frame
-//            }
         }
         
         if let lineLayer4 = lineLayer4 {
@@ -210,10 +166,6 @@ class LineChart: UIView {
                 mainLayer.addSublayer(dataLayer)
                 lineLayers.append(dataLayer)
             }
-//            if let maskGradientLayer = lineLayer4.maskGradientLayer(height: mainLayer.frame.height - topSpace - bottomSpace, minMax: (min, max)) {
-//                scrollView.layer.addSublayer(maskGradientLayer)
-//                maskGradientLayer.frame = mainLayer.frame
-//            }
         }
     }
     
