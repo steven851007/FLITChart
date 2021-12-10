@@ -47,7 +47,7 @@
                                                                                 <color key="textColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="il6-Xv-5qi">
+                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="il6-Xv-5qi" customClass="UITextFieldWithDollarSign" customModule="FLITChart" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="35.5" width="177" height="34"/>
                                                                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                                                                 <color key="textColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
@@ -68,7 +68,7 @@
                                                                                 <color key="textColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qen-MB-TX7">
+                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qen-MB-TX7" customClass="UITextFieldWithDollarSign" customModule="FLITChart" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="35.5" width="177" height="34"/>
                                                                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                                                                 <color key="textColor" systemColor="tertiarySystemGroupedBackgroundColor"/>

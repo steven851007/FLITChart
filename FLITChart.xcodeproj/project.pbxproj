@@ -24,6 +24,7 @@
 		87329B12275F3A9A00A43BD2 /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87329B11275F3A9A00A43BD2 /* LineChart.swift */; };
 		87329B14275F3AC700A43BD2 /* CurveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87329B13275F3AC700A43BD2 /* CurveAlgorithm.swift */; };
 		87ADBAAB27633840007B3F45 /* ChartGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87ADBAAA27633840007B3F45 /* ChartGradientView.swift */; };
+		87ADBAAD276338EE007B3F45 /* UITextFieldWithDollarSign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87ADBAAC276338EE007B3F45 /* UITextFieldWithDollarSign.swift */; };
 		87E64C262759E1D7004779EE /* InvestmentReturnPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E64C252759E1D7004779EE /* InvestmentReturnPresenterTests.swift */; };
 		87E64C282759E64B004779EE /* InvestmentReturnsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E64C272759E64B004779EE /* InvestmentReturnsPresenter.swift */; };
 		87E64C2B2759E661004779EE /* InvestmentReturnsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E64C2A2759E661004779EE /* InvestmentReturnsViewModel.swift */; };
@@ -71,6 +72,7 @@
 		87329B11275F3A9A00A43BD2 /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		87329B13275F3AC700A43BD2 /* CurveAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveAlgorithm.swift; sourceTree = "<group>"; };
 		87ADBAAA27633840007B3F45 /* ChartGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartGradientView.swift; sourceTree = "<group>"; };
+		87ADBAAC276338EE007B3F45 /* UITextFieldWithDollarSign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldWithDollarSign.swift; sourceTree = "<group>"; };
 		87E64C252759E1D7004779EE /* InvestmentReturnPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnPresenterTests.swift; sourceTree = "<group>"; };
 		87E64C272759E64B004779EE /* InvestmentReturnsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnsPresenter.swift; sourceTree = "<group>"; };
 		87E64C2A2759E661004779EE /* InvestmentReturnsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnsViewModel.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				87329B11275F3A9A00A43BD2 /* LineChart.swift */,
 				87329B13275F3AC700A43BD2 /* CurveAlgorithm.swift */,
 				87ADBAAA27633840007B3F45 /* ChartGradientView.swift */,
+				87ADBAAC276338EE007B3F45 /* UITextFieldWithDollarSign.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				8724216827587CFF00645330 /* InvestmenReturnsViewController.swift in Sources */,
 				87E64C2B2759E661004779EE /* InvestmentReturnsViewModel.swift in Sources */,
 				8724219527588B9D00645330 /* InvestmentReturnsModel.swift in Sources */,
+				87ADBAAD276338EE007B3F45 /* UITextFieldWithDollarSign.swift in Sources */,
 				87329B12275F3A9A00A43BD2 /* LineChart.swift in Sources */,
 				87ADBAAB27633840007B3F45 /* ChartGradientView.swift in Sources */,
 				8724216427587CFF00645330 /* AppDelegate.swift in Sources */,

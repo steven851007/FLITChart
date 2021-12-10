@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 public class InvestmenReturnsViewController: UIViewController {
 
     @IBOutlet weak var initialInvestmentTextField: UITextField!
@@ -22,13 +20,9 @@ public class InvestmenReturnsViewController: UIViewController {
         
         let viewModel = InvestmentReturnsPresenter.map(model)
         display(viewModel)
-        
-        let largeConfig = UIImage.SymbolConfiguration(scale: .large)
-        initialInvestmentTextField.leftView = UIImageView(image: UIImage(systemName: "dollarsign.square", withConfiguration: largeConfig))
-        initialInvestmentTextField.leftView?.tintColor = .tertiarySystemGroupedBackground
-        initialInvestmentTextField.leftViewMode = .always
     }
-    func editingChanged() {
+    
+    func textfieldValuesChanged() {
         guard let initialInvestmentText = initialInvestmentTextField.text,
               let initialInvestment = NumberFormatter.chartCurrencyFormatter.number(from: initialInvestmentText),
               let monthlyContributionText = monthlyContributionTextField.text,
@@ -62,7 +56,7 @@ extension InvestmenReturnsViewController: UITextFieldDelegate {
             textField.text = finalString.currency
 
             // returning 'false' so that textfield will not be updated here, instead from styling extension
-            editingChanged()
+            textfieldValuesChanged()
             return false
         }
 }
@@ -72,12 +66,6 @@ extension String {
         // removing all characters from string before formatting
         let stringWithoutSymbol = self.replacingOccurrences(of: "$", with: "")
         let stringWithoutComma = stringWithoutSymbol.replacingOccurrences(of: ",", with: "")
-
-        let styler = NumberFormatter()
-        styler.minimumFractionDigits = 0
-        styler.maximumFractionDigits = 0
-        styler.currencySymbol = "$"
-        styler.numberStyle = .currency
 
         if let result = NumberFormatter().number(from: stringWithoutComma) {
             return NumberFormatter.chartCurrencyFormatter.string(from: result)!
