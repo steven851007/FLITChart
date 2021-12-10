@@ -38,7 +38,7 @@ public struct InvestmentReturnsViewModel {
     public let returnsAverageTopCase: [PointEntry]
     public let returnsBestCase: [PointEntry]
     
-    func currencyFormattedString(from textfieldValue: String) -> String {
+    public func currencyFormattedString(from textfieldValue: String) -> String {
         // removing all characters from string before formatting
         let stringWithoutSymbol = textfieldValue.replacingOccurrences(of: "$", with: "")
         let stringWithoutComma = stringWithoutSymbol.replacingOccurrences(of: ",", with: "")
