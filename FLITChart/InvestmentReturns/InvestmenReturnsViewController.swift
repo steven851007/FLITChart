@@ -7,34 +7,7 @@
 
 import UIKit
 
-class ChartGradientView: UIView {
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setGradientBackground(colorTop: .systemBlue, colorBottom: .systemBackground)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setGradientBackground(colorTop: .systemBlue, colorBottom: .systemBackground)
-    }
-    
-    private var gradientLayer = CAGradientLayer()
-    
-    private func setGradientBackground(colorTop: UIColor, colorBottom: UIColor){
-            gradientLayer.colors = [colorTop.cgColor, colorBottom.cgColor]
-            gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-            gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
-            gradientLayer.locations = [0, 1]
-            gradientLayer.frame = bounds
 
-            layer.insertSublayer(gradientLayer, at: 0)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        gradientLayer.frame = bounds
-    }
-}
 
 public class InvestmenReturnsViewController: UIViewController {
 
@@ -50,7 +23,9 @@ public class InvestmenReturnsViewController: UIViewController {
         let viewModel = InvestmentReturnsPresenter.map(model)
         display(viewModel)
         
-        initialInvestmentTextField.leftView = UIImageView(image: UIImage(named: "email.png"))
+        let largeConfig = UIImage.SymbolConfiguration(scale: .large)
+        initialInvestmentTextField.leftView = UIImageView(image: UIImage(systemName: "dollarsign.square", withConfiguration: largeConfig))
+        initialInvestmentTextField.leftView?.tintColor = .tertiarySystemGroupedBackground
         initialInvestmentTextField.leftViewMode = .always
     }
     func editingChanged() {

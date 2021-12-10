@@ -23,6 +23,7 @@
 		87329B0D275F1EB500A43BD2 /* INVESTMENTRETURNS_WITH_CONTENT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 87329B0A275F1EB500A43BD2 /* INVESTMENTRETURNS_WITH_CONTENT_light.png */; };
 		87329B12275F3A9A00A43BD2 /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87329B11275F3A9A00A43BD2 /* LineChart.swift */; };
 		87329B14275F3AC700A43BD2 /* CurveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87329B13275F3AC700A43BD2 /* CurveAlgorithm.swift */; };
+		87ADBAAB27633840007B3F45 /* ChartGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87ADBAAA27633840007B3F45 /* ChartGradientView.swift */; };
 		87E64C262759E1D7004779EE /* InvestmentReturnPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E64C252759E1D7004779EE /* InvestmentReturnPresenterTests.swift */; };
 		87E64C282759E64B004779EE /* InvestmentReturnsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E64C272759E64B004779EE /* InvestmentReturnsPresenter.swift */; };
 		87E64C2B2759E661004779EE /* InvestmentReturnsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E64C2A2759E661004779EE /* InvestmentReturnsViewModel.swift */; };
@@ -69,6 +70,7 @@
 		87329B0A275F1EB500A43BD2 /* INVESTMENTRETURNS_WITH_CONTENT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = INVESTMENTRETURNS_WITH_CONTENT_light.png; sourceTree = "<group>"; };
 		87329B11275F3A9A00A43BD2 /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		87329B13275F3AC700A43BD2 /* CurveAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveAlgorithm.swift; sourceTree = "<group>"; };
+		87ADBAAA27633840007B3F45 /* ChartGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartGradientView.swift; sourceTree = "<group>"; };
 		87E64C252759E1D7004779EE /* InvestmentReturnPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnPresenterTests.swift; sourceTree = "<group>"; };
 		87E64C272759E64B004779EE /* InvestmentReturnsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnsPresenter.swift; sourceTree = "<group>"; };
 		87E64C2A2759E661004779EE /* InvestmentReturnsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentReturnsViewModel.swift; sourceTree = "<group>"; };
@@ -127,7 +129,6 @@
 			children = (
 				8724216327587CFF00645330 /* AppDelegate.swift */,
 				8724216527587CFF00645330 /* SceneDelegate.swift */,
-				87329B17275F3C0B00A43BD2 /* Chart UI */,
 				8724219327588B7300645330 /* InvestmentReturns */,
 				8724216C27587D0100645330 /* Assets.xcassets */,
 				8724216E27587D0100645330 /* LaunchScreen.storyboard */,
@@ -160,6 +161,7 @@
 			children = (
 				8724216927587CFF00645330 /* InvestmentReturns.storyboard */,
 				8724216727587CFF00645330 /* InvestmenReturnsViewController.swift */,
+				87329B17275F3C0B00A43BD2 /* UI */,
 				8724219627588EE400645330 /* Domain */,
 				87E64C292759E64F004779EE /* Presenter */,
 			);
@@ -175,13 +177,14 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
-		87329B17275F3C0B00A43BD2 /* Chart UI */ = {
+		87329B17275F3C0B00A43BD2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				87329B11275F3A9A00A43BD2 /* LineChart.swift */,
 				87329B13275F3AC700A43BD2 /* CurveAlgorithm.swift */,
+				87ADBAAA27633840007B3F45 /* ChartGradientView.swift */,
 			);
-			path = "Chart UI";
+			path = UI;
 			sourceTree = "<group>";
 		};
 		87E64C292759E64F004779EE /* Presenter */ = {
@@ -365,6 +368,7 @@
 				87E64C2B2759E661004779EE /* InvestmentReturnsViewModel.swift in Sources */,
 				8724219527588B9D00645330 /* InvestmentReturnsModel.swift in Sources */,
 				87329B12275F3A9A00A43BD2 /* LineChart.swift in Sources */,
+				87ADBAAB27633840007B3F45 /* ChartGradientView.swift in Sources */,
 				8724216427587CFF00645330 /* AppDelegate.swift in Sources */,
 				87E64C282759E64B004779EE /* InvestmentReturnsPresenter.swift in Sources */,
 				8724216627587CFF00645330 /* SceneDelegate.swift in Sources */,

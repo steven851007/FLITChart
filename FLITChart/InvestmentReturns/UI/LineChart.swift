@@ -291,7 +291,7 @@ class LineChart: UIView {
                 textLayer.contentsScale = UIScreen.main.scale
                 textLayer.font = CTFontCreateWithName(UIFont.systemFont(ofSize: 0).fontName as CFString, 0, nil)
                 textLayer.fontSize = 12
-                textLayer.string = formatNumber(lineValue)
+                textLayer.string = "$ " + formatNumber(lineValue)
                 
                 gridLayer.addSublayer(textLayer)
             }
@@ -310,7 +310,7 @@ class LineChart: UIView {
         gridLayer.sublayers?.forEach({$0.removeFromSuperlayer()})
     }
     
-    func formatNumber(_ n: Int) -> String {
+    private func formatNumber(_ n: Int) -> String {
         let num = abs(Double(n))
         let sign = (n < 0) ? "-" : ""
 
