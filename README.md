@@ -9,6 +9,7 @@ This repository contains the interview task for FLIT.
 - The architecture of the screen is using a simple MVVM architecture due the simplicity of the screen.
 - The task was implemented using TDD methodology which resulted in a 83% test coverage
 - The screen supports dark mode and landscape orientation 
+- The UI doesn't exactly looks like as in the task as I was missing the exact desings and colors for that and also due to some optimization
 
 # Recommendations to improve the screen usability
 - Explain to the user what the different lines mean and why there are 4
