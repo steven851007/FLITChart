@@ -52,7 +52,7 @@
                                                                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                                                                 <color key="textColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                                <textInputTraits key="textInputTraits"/>
+                                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                                 <connections>
                                                                                     <outlet property="delegate" destination="BYZ-38-t0r" id="GEu-Mr-VMW"/>
                                                                                 </connections>
@@ -73,7 +73,7 @@
                                                                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                                                                 <color key="textColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                                <textInputTraits key="textInputTraits"/>
+                                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                                 <connections>
                                                                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Bp2-Un-cbb"/>
                                                                                 </connections>
@@ -118,7 +118,13 @@
                             <constraint firstItem="XHQ-dG-1hU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jwY-21-c8N"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="eak-99-OQu"/>
+                    <navigationItem key="navigationItem" id="eak-99-OQu">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="1Vf-Bm-jek">
+                            <connections>
+                                <action selector="doneButtonTapped:" destination="BYZ-38-t0r" id="SQx-Pc-aQP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="chartView" destination="JfC-rK-rIl" id="5Db-5h-ERw"/>
                         <outlet property="initialInvestmentTextField" destination="il6-Xv-5qi" id="H85-aL-ht7"/>

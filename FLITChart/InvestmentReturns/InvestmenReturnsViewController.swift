@@ -17,7 +17,13 @@ public class InvestmenReturnsViewController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
+        title = "Investment returns"
         display(viewModel)
+    }
+    
+    @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
+        initialInvestmentTextField.resignFirstResponder()
+        monthlyContributionTextField.resignFirstResponder()
     }
     
     func textfieldValuesChanged() {
