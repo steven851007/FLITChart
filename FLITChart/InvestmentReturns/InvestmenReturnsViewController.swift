@@ -40,35 +40,21 @@ public class InvestmenReturnsViewController: UIViewController {
         monthlyContributionTextField.text = investmentReturns.monthlyContributionValue
         
         chartView.clean()
-        chartView.addDataEntry(investmentReturns.returnsWorstCase, entry2: investmentReturns.returnsAverageBottomCase, entry3: investmentReturns.returnsAverageTopCase, entry4: investmentReturns.returnsBestCase)
+        chartView.addDataEntry(
+            investmentReturns.returnsWorstCase,
+            entry2: investmentReturns.returnsAverageBottomCase,
+            entry3: investmentReturns.returnsAverageTopCase,
+            entry4: investmentReturns.returnsBestCase)
     }
 }
 
 extension InvestmenReturnsViewController: UITextFieldDelegate {
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-
-            let text: NSString = (textField.text ?? "") as NSString
-            let finalString = text.replacingCharacters(in: range, with: string)
-
-            // 'currency' is a String extension that doews all the number styling
-            textField.text = finalString.currency
-
-            // returning 'false' so that textfield will not be updated here, instead from styling extension
-            textfieldValuesChanged()
-            return false
+        let text: NSString = (textField.text ?? "") as NSString
+        let newString = text.replacingCharacters(in: range, with: string)
+        
+        textField.text = viewModel.currencyFormattedString(from: newString)
+        textfieldValuesChanged()
+        return false
         }
-}
-
-extension String {
-    var currency: String {
-        // removing all characters from string before formatting
-        let stringWithoutSymbol = self.replacingOccurrences(of: "$", with: "")
-        let stringWithoutComma = stringWithoutSymbol.replacingOccurrences(of: ",", with: "")
-
-        if let result = NumberFormatter().number(from: stringWithoutComma) {
-            return NumberFormatter.chartCurrencyFormatter.string(from: result)!
-        }
-
-        return self
-    }
 }
