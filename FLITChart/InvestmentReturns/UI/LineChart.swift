@@ -293,7 +293,7 @@ class LineChart: UIView {
 }
 
 
-extension Double {
+private extension Double {
     func reduceScale(to places: Int) -> Double {
         let multiplier = pow(10, Double(places))
         let newDecimal = multiplier * self // move the decimal right
