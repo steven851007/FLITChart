@@ -25,42 +25,14 @@ public class InvestmenReturnsViewController: UIViewController {
     }
     func editingChanged() {
         guard let initialInvestmentText = initialInvestmentTextField.text,
-              let initialInvestment = currencyFormatter.number(from: initialInvestmentText) else {
-                  print("not valid")
+              let initialInvestment = NumberFormatter.chartCurrencyFormatter.number(from: initialInvestmentText),
+              let monthlyContributionText = monthlyContributionTextField.text,
+              let monthlyContribution = NumberFormatter.chartCurrencyFormatter.number(from: monthlyContributionText) else {
                   return
               }
         
-        print("valid")
-        
         let annualReturns = AnnualReturnPercentages(worstCase: 2.15, averageWorstCase: 5.3, averageBestCase: 8.72, bestCase: 9.5)
-        let model = InvestmentReturnsModel(initialInvestment: NSDecimalNumber(decimal: initialInvestment.decimalValue), monthlyContribution: NSDecimalNumber(decimal: 500), annualReturns: annualReturns, lengthOfInvestmentInMonths: 12*31)
-        
-        let viewModel = InvestmentReturnsPresenter.map(model)
-        display(viewModel)
-    }
-    
-    
-    
-    private var currencyFormatter: NumberFormatter = {
-        let currencyFormatter = NumberFormatter()
-        currencyFormatter.usesGroupingSeparator = true
-        currencyFormatter.alwaysShowsDecimalSeparator = false
-        currencyFormatter.numberStyle = .currency
-        currencyFormatter.currencySymbol = ""
-        currencyFormatter.generatesDecimalNumbers = false
-        currencyFormatter.locale = Locale(identifier: "en_US")
-        return currencyFormatter
-    }()
-    
-    
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        guard let initialInvestmentText = initialInvestmentTextField.text,
-              let initialInvestment = currencyFormatter.number(from: initialInvestmentText) else {
-            return
-        }
-        
-        let annualReturns = AnnualReturnPercentages(worstCase: 2.15, averageWorstCase: 5.3, averageBestCase: 8.72, bestCase: 9.5)
-        let model = InvestmentReturnsModel(initialInvestment: NSDecimalNumber(decimal: initialInvestment.decimalValue), monthlyContribution: NSDecimalNumber(decimal: 500), annualReturns: annualReturns, lengthOfInvestmentInMonths: 12*31)
+        let model = InvestmentReturnsModel(initialInvestment: NSDecimalNumber(decimal: initialInvestment.decimalValue), monthlyContribution: NSDecimalNumber(decimal: monthlyContribution.decimalValue), annualReturns: annualReturns, lengthOfInvestmentInMonths: 12*31)
         
         let viewModel = InvestmentReturnsPresenter.map(model)
         display(viewModel)
@@ -82,7 +54,7 @@ extension InvestmenReturnsViewController: UITextFieldDelegate {
             let finalString = text.replacingCharacters(in: range, with: string)
 
             // 'currency' is a String extension that doews all the number styling
-            initialInvestmentTextField.text = finalString.currency
+            textField.text = finalString.currency
 
             // returning 'false' so that textfield will not be updated here, instead from styling extension
             editingChanged()
